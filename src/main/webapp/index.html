@@ -26,20 +26,36 @@
 
 $(document).ready(function(){
 	$("#form").submit(function(){
-	eTextValue=document.getElementById("eText").value;
-		$.post("http://translate-dhivehi.rhcloud.com/Translator/services/Translate?wsdl/Translate",
-		{
-			eText: eTextValue
-		},
-		function(data){
-			dText.innerHTML=data.childNodes[0].childNodes[0].data;
-			$("#dText").show();
-		});
-		return false;
+		translate();
+		event.preventDefault();
 	});
+	$(".waves-input-wrapper").click(function(){
+		translate();
+//		event.preventDefault();
+	});
+//	$("#submit").parent().click(function(){
+//		translate();
+//		event.preventDefault();
+//	});
 });
 
 
+
+function translate(){
+eTextValue=document.getElementById("eText").value;
+	if(eTextValue=="")
+		return
+		
+	$.post("http://translate-dhivehi.rhcloud.com/Translator/services/Translate?wsdl/Translate",
+	{
+		eText: eTextValue
+	},
+	function(data){
+		dText.innerHTML=data.childNodes[0].childNodes[0].data;
+		$("#dText").show();
+	});
+	return;
+}
 </script>
 
 	<div class="container">
@@ -51,9 +67,9 @@ $(document).ready(function(){
 					<input id="eText" type="text" class="validate">
 					<label for="eText">Enter english text</label>
 				</div>
- 		<input class="waves-effect waves-light btn-large" type="submit" value="Translate"></input>
+ 		<input id='submit' class="btn waves-light" type="submit" value="Translate"></input>
 	</form>
-	<div id="dText" class= "containner #ef9a9a red lighten-3 dText" style="display:none">
+	<div id="dText" class= "container #ef9a9a red lighten-3 dText" style="display:none">
 			<br>
 			<br>
 			<br>
