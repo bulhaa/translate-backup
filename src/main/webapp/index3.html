@@ -25,15 +25,21 @@
 		$(document).ready(function(){
 			$('select').material_select();
 			$("#form0").submit(function(){
-			words=document.getElementById("eText0").value.split(" ");
-			
-			for(var a=0; a<words.length; a++){
-				$('#form'+(a+1)).show();
-				$('#eText'+(a+1)).val(words[a]);
-				$('#eTextl'+(a+1)).addClass("active");
-			}
+				words=$("eText0").val().split(" ");
+				
+				for(var a=0; a<words.length; a++){
+					$('#form'+(a+1)).show();
+					$('#eText'+(a+1)).val(words[a]);
+					$('#eTextl'+(a+1)).addClass("active");
+				}
+				return false;
+			});
 
-/* 				$.post("http://localhost:8080/Translator/services/SetDefinitionS?wsdl/SetDefinitionO",
+			$("#form1").submit(function(){
+				eTextValue=$("#eText1").val();
+				dTextValue=$("#dText1").val();
+				typeValue=$("#type1").val();
+			 	$.post("http://translate-dhivehi.rhcloud.com/Translator/services/SetDefinitionS?wsdl/SetDefinitionO",
 				{
 					eText: eTextValue,
 					dText: dTextValue,
@@ -41,9 +47,9 @@
 				}
 				,
 				function(data){
-					feedback.innerHTML=data.childNodes[0].childNodes[0].data;
+					$("#feedback").html(data.childNodes[0].childNodes[0].data);
 					$("#feedback").show();
-				});*/
+				});
 				return false;
 			});
 		});
@@ -58,15 +64,15 @@
 			<input id="eText0" type="text" class="validate">
 			<label for="eText0">English sentence</label>
 		</div>
-		<input class="waves-light btn" type="submit" value="OK"></input>
+		<input class="waves-effect waves-light btn" type="submit" value="OK"></input>
 		</form>
 	</div>
 	<div class="container" align = "center">
 		<div class="row">
 			<div class="input-field col container s12 m6 l2">
-				<form class="" id="form1" method="post" align="center" action="">
+				<form class="" id="form1" method="post" align = "center" action="">
 				<div class="input-field">
-					<input id="eText1" type="text" class="validate" placeholder="test">
+					<input id="eText1" type="text" class="validate">
 					<label id="eTextl1" for="eText1">English word</label>
 				</div>
 				<div class="input-field">
