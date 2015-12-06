@@ -1,0 +1,121 @@
+<html>
+<head>
+	<style type="text/css">
+		html {
+			font-family: GillSans, Calibri;
+		}
+		.dText {
+			font-family: Faruma;
+			font-size: 200%;	
+		}   
+	</style>
+	<!--Import Google Icon Font-->
+	<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<!-- Compiled and minified CSS -->
+	<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
+
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+<body>
+      <!--Import jQuery before materialize.js-->
+    <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
+	<script>
+		$(document).ready(function(){
+			$('select').material_select();
+			$("#form0").submit(function(){
+			words=document.getElementById("eText0").value.split(" ");
+			
+			for(var a=0; a<words.length; a++){
+				$('#form'+(a+1)).show();
+				$('#eText'+(a+1)).val(words[a]);
+				$('#eTextl'+(a+1)).addClass("active");
+			}
+
+/* 				$.post("http://localhost:8080/Translator/services/SetDefinitionS?wsdl/SetDefinitionO",
+				{
+					eText: eTextValue,
+					dText: dTextValue,
+					type: typeValue
+				}
+				,
+				function(data){
+					feedback.innerHTML=data.childNodes[0].childNodes[0].data;
+					feedback.show();
+				});*/
+				return false;
+			});
+		});
+	</script>
+	
+	<div class="container">
+		<h1 >Manage Definitions</h1>
+	</div>
+	<div class="container">
+		<form class="" id="form0" method="post" align = "center" action="">
+		<div class="input-field">
+			<input id="eText0" type="text" class="validate">
+			<label for="eText0">English sentence</label>
+		</div>
+		<input class="waves-light btn" type="submit" value="OK"></input>
+		</form>
+	</div>
+	<div class="container" align = "center">
+		<div class="row">
+			<div class="input-field col container s12 m6 l2">
+				<form class="" id="form1" method="post" align="center" action="">
+				<div class="input-field">
+					<input id="eText1" type="text" class="validate" placeholder="test">
+					<label id="eTextl1" for="eText1">English word</label>
+				</div>
+				<div class="input-field">
+					<input id="dText1" type="text" class="validate dText">
+					<label id="dTextl1" for="dText1">Dhivehi word</label>
+				</div>
+				<div class="input-field">
+					<select id="type1" >
+						<option value="" disabled selected>Choose word type</option>
+						<option value="1">Noun</option>
+						<option value="2">Verb</option>
+						<option value="3">Other</option>
+					</select>
+					<label>Word type</label>
+				</div>
+				<input class="waves-light btn" type="submit" value="OK"></input>
+				</form>
+			</div>
+			<div class="input-field col container s12 m6 l2" >
+				<form class="" id="form2" method="post" align = "center" action="" style="display:none">
+				<div class="input-field">
+					<input id="eText2" type="text" class="validate">
+					<label id="eTextl2" for="eText2">English word</label>
+				</div>
+				<div class="input-field">
+					<input id="dText2" type="text" class="validate dText">
+					<label id="dTextl2" for="dText2">Dhivehi word</label>
+				</div>
+				<div class="input-field">
+					<select id="type2" >
+						<option value="" disabled selected>Choose word type</option>
+						<option value="1">Noun</option>
+						<option value="2">Verb</option>
+						<option value="3">Other</option>
+					</select>
+					<label>Word type</label>
+				</div>
+				<input class="waves-light btn" type="submit" value="OK"></input>
+				</form>
+			</div>
+		</div>
+		<div id="feedback" class= "container #ef9a9a red lighten-3" style="display:none">
+				<br>
+				<br>
+				<br>
+				<br>
+		</div>
+	</div>
+
+
+</body>
+</html>
