@@ -42,7 +42,7 @@
 						<id>execution1</id>
 						<phase>install</phase>
                         <goals>
-                            <goal>deploy</goal>
+                            <goal>redeploy</goal>
                         </goals>
                     </execution>
                     <execution>
