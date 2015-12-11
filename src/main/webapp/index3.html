@@ -1,5 +1,15 @@
-<html>
+<!DOCTYPE html>
+<html lang="en" ng-app="manager">
 <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>Manage Definitions</title>
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 	<style type="text/css">
 		html {
 			font-family: GillSans, Calibri;
@@ -8,120 +18,202 @@
 			font-family: Faruma;
 			font-size: 200%;	
 		}   
+  #draggable { width: 100px; height: 100px; padding: 0.5em; float: left; margin: 10px 10px 10px 0; }
+  #droppable { width: 150px; height: 150px; padding: 0.5em; float: left; margin: 10px; }
 	</style>
-	<!--Import Google Icon Font-->
-	<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-	<!-- Compiled and minified CSS -->
-	<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
-
-      <!--Let browser know website is optimized for mobile-->
-      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
 <body>
-      <!--Import jQuery before materialize.js-->
-    <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
+  <nav class="light-blue lighten-1" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">English-Dhivehi Translator</a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="#">Navbar Link</a></li>
+      </ul>
+
+      <ul id="nav-mobile" class="side-nav">
+        <li><a href="#">Navbar Link</a></li>
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+  <div class="section no-pad-bot" id="index-banner">
+    <div class="container">
+      <br><br>
+      <h1 class="header center orange-text">Manage Definitions</h1>
+      <div class="row center">
+        <h5 class="header col s12 light">Modify dhivehi words and word types</h5>
+      </div>
+      <div class="row center">
+        <!-- <a href="http://materializecss.com/getting-started.html" id="download-button" class="btn-large waves-effect waves-light orange">Get Started</a> -->
+      </div>
+      <br><br>
+
+    </div>
+  </div>
+
+
+  <div class="container">
+
+  <form class="" id="sentForm" method="post" align = "center" action="">
+    <div class="input-field">
+	  <input id="sent_eText" type="text" class="validate">
+	  <label for="sent_eText">English sentence</label>
+	</div>
+	<input class="waves-effect waves-light btn" type="submit" value="Lookup definitions"></input>
+	<div class="progress" style="display:none">
+	  <div class="indeterminate"></div>
+	</div>
+  </form>
+
+    <div class="section">
+
+      <!--   Icon Section   -->
+      <div ng-controller="managerController as definitions" class="row">
+		<div  class="row center">
+			<div ng-repeat="d in definitions.definition" class="definitionForm input-field col container s12 m6 l3 center">
+				<form class="" id="form{{$index}}" method="post" align = "center" action="">
+				<div class="input-field">
+					<input id="eText{{$index}}" type="text" class="validate" ng-model="d.eText">
+					<label id="eTextl{{$index}}" for="eText{{$index}}">English word</label>
+				</div>
+				<div class="input-field">
+					<input id="dText{{$index}}" type="text" class="validate dText" ng-model="d.dText">
+					<label id="dTextl{{$index}}" for="dText{{$index}}">Dhivehi word</label>
+				</div>
+				<div class="input-field">
+					<select id="type{{$index}}" ng-model="d.type">
+						<option value="" disabled selected>Choose word type</option>
+							<option value="1">Coordinating conjunction</option>
+							<option value="2">Cardinal number</option>
+							<option value="3">Determiner</option>
+							<option value="4">Existential there</option>
+							<option value="5">Foreign word</option>
+							<option value="6">Preposition or subordinating conjunction</option>
+							<option value="7">Adjective</option>
+							<option value="8">Adjective, comparative</option>
+							<option value="9">Adjective, superlative</option>
+							<option value="10">List item marker</option>
+							<option value="11">Modal</option>
+							<option value="12">Noun, singular or mass</option>
+							<option value="13">Noun, plural</option>
+							<option value="14">Proper noun, singular</option>
+							<option value="15">Proper noun, plural</option>
+							<option value="16">Predeterminer</option>
+							<option value="17">Possessive ending</option>
+							<option value="18">Personal pronoun</option>
+							<option value="19">Possessive pronoun</option>
+							<option value="20">Adverb</option>
+							<option value="21">Adverb, comparative</option>
+							<option value="22">Adverb, superlative</option>
+							<option value="23">Particle</option>
+							<option value="24">Symbol</option>
+							<option value="25">to</option>
+							<option value="26">Interjection</option>
+							<option value="27">Verb, base form</option>
+							<option value="28">Verb, past tense</option>
+							<option value="29">Verb, gerund or present participle</option>
+							<option value="30">Verb, past participle</option>
+							<option value="31">Verb, non­3rd person singular present</option>
+							<option value="32">Verb, 3rd person singular present</option>
+							<option value="33">Wh­determiner</option>
+							<option value="34">Wh­pronoun</option>
+							<option value="35">Possessive wh­pronoun</option>
+							<option value="36">Wh­adverb</option>
+							<option value="37"></option>
+					</select>
+					<label>Word type</label>
+				</div>
+				<input class="waves-light btn" type="submit" value="Save"></input>
+				</form>
+			</div>
+
+		</div>
+		<div class="row center">
+			<div ng-repeat="d in definitions.definition | reverse" >
+
+ 
+				<div id="droppable" class="ui-widget-header position">
+					<div id="draggable" class="ui-widget-content word">
+					  <p ng-model="d.dText" class='dText'>{{d.dText}}</p>
+					</div>
+				  <p>Drop here</p>
+				</div>
+			</div>
+		</div>
+		<div id="feedback" class= "container #ef9a9a red lighten-3l12" style="display:none">
+				<br>
+				<br>
+				<br>
+				<br>
+		</div>
+
+    </div>
+    <br><br>
+
+    <div class="section">
+
+    </div>
+  </div>
+
+  <footer class="page-footer orange">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">About</h5>
+          <p class="grey-text text-lighten-4">We are a team of college students working on this project like it's our full time job. Any amount would help support and continue development on this project and is greatly appreciated.</p>
+
+
+        </div>
+        <div class="col l3 s12">
+          <h5 class="white-text">Developers</h5>
+          <ul>
+            <li><a class="white-text" href="#!">Hammadh</a></li>
+            <li><a class="white-text" href="#!">Ashraq</a></li>
+            <li><a class="white-text" href="#!"></a></li>
+            <li><a class="white-text" href="#!"></a></li>
+          </ul>
+        </div>
+        <div class="col l3 s12">
+          <h5 class="white-text"></h5>
+          <ul>
+		<div id="pb-opennlp" class= "container l2 center">
+			<a href="https://opennlp.apache.org/" target="_blank"><img src="images/pb-opennlp.jpg" alt=""  class="circle responsive-img l2" height="300" width="300"></a>
+		</div>
+		<li><a class="white-text" href="#!"></a></li>
+            <li><a class="white-text" href="#!"></a></li>
+            <li><a class="white-text" href="#!"></a></li>
+            <li><a class="white-text" href="#!"></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+      Made by <a class="orange-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+      </div>
+    </div>
+  </footer>
+
+
+  <!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+  <script src="../../bin/materialize.js"></script>
+  <script src="js/init.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
 	<script>
 		$(document).ready(function(){
 			$('select').material_select();
-			$("#form0").submit(function(){
-				words=$("eText0").val().split(" ");
-				
-				for(var a=0; a<words.length; a++){
-					$('#form'+(a+1)).show();
-					$('#eText'+(a+1)).val(words[a]);
-					$('#eTextl'+(a+1)).addClass("active");
-				}
-				return false;
-			});
-
-			$("#form1").submit(function(){
-				eTextValue=$("#eText1").val();
-				dTextValue=$("#dText1").val();
-				typeValue=$("#type1").val();
-			 	$.post("http://translate-dhivehi.rhcloud.com/Translator/services/SetDefinitionS?wsdl/SetDefinitionO",
-				{
-					eText: eTextValue,
-					dText: dTextValue,
-					type: typeValue
-				}
-				,
-				function(data){
-					$("#feedback").html(data.childNodes[0].childNodes[0].data);
-					$("#feedback").show();
-				});
-				return false;
+			$( ".word" ).draggable();
+			$( ".position" ).droppable({
+			drop: function( event, ui ) {
+				$( this )
+				  .addClass( "ui-state-highlight" )
+				  .find( "p" )
+					.html( "Dropped!" );
+			  }
 			});
 		});
 	</script>
-	
-	<div class="container">
-		<h1 >Manage Definitions</h1>
-	</div>
-	<div class="container">
-		<form class="" id="form0" method="post" align = "center" action="">
-		<div class="input-field">
-			<input id="eText0" type="text" class="validate">
-			<label for="eText0">English sentence</label>
-		</div>
-		<input class="waves-effect waves-light btn" type="submit" value="OK"></input>
-		</form>
-	</div>
-	<div class="container" align = "center">
-		<div class="row">
-			<div class="input-field col container s12 m6 l2">
-				<form class="" id="form1" method="post" align = "center" action="">
-				<div class="input-field">
-					<input id="eText1" type="text" class="validate">
-					<label id="eTextl1" for="eText1">English word</label>
-				</div>
-				<div class="input-field">
-					<input id="dText1" type="text" class="validate dText">
-					<label id="dTextl1" for="dText1">Dhivehi word</label>
-				</div>
-				<div class="input-field">
-					<select id="type1" >
-						<option value="" disabled selected>Choose word type</option>
-						<option value="1">Noun</option>
-						<option value="2">Verb</option>
-						<option value="3">Other</option>
-					</select>
-					<label>Word type</label>
-				</div>
-				<input class="waves-light btn" type="submit" value="OK"></input>
-				</form>
-			</div>
-			<div class="input-field col container s12 m6 l2" >
-				<form class="" id="form2" method="post" align = "center" action="" style="display:none">
-				<div class="input-field">
-					<input id="eText2" type="text" class="validate">
-					<label id="eTextl2" for="eText2">English word</label>
-				</div>
-				<div class="input-field">
-					<input id="dText2" type="text" class="validate dText">
-					<label id="dTextl2" for="dText2">Dhivehi word</label>
-				</div>
-				<div class="input-field">
-					<select id="type2" >
-						<option value="" disabled selected>Choose word type</option>
-						<option value="1">Noun</option>
-						<option value="2">Verb</option>
-						<option value="3">Other</option>
-					</select>
-					<label>Word type</label>
-				</div>
-				<input class="waves-light btn" type="submit" value="OK"></input>
-				</form>
-			</div>
-		</div>
-		<div id="feedback" class= "container #ef9a9a red lighten-3" style="display:none">
-				<br>
-				<br>
-				<br>
-				<br>
-		</div>
-	</div>
-
-
-</body>
+	<script src="manager.js"></script>
+  </body>
 </html>

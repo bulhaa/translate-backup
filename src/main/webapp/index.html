@@ -9,10 +9,10 @@
 	  html {
     font-family: GillSans, Calibri;
   }
-.dText { 
+.dText {
     font-family: MV_Faseyha;
-    font-size: 200%; 
-/*	text-align: right; */
+    font-size: 200%;
+/*	text-align: right;*/
 	direction: rtl;
 }
     </style>
@@ -53,7 +53,7 @@ eTextValue=document.getElementById("eText").value;
 	if(eTextValue=="")
 		return
 		
-	$.post("http://translate-dhivehi.rhcloud.com/Translator/services/Translate?wsdl/Translate",
+	$.post("http://localhost:8080/Translator/services/TranslatorS?wsdl/Translate",
 	{
 		eText: eTextValue
 	},
@@ -66,7 +66,7 @@ eTextValue=document.getElementById("eText").value;
 </script>
 
 	<div class="container">
-		<h1 >Tharujamate</h1>
+		<h1 >Translator</h1>
 	</div>
 <div class="container" align = "center">
 	<form id="form" method="post" align = "center" action="">
@@ -77,8 +77,7 @@ eTextValue=document.getElementById("eText").value;
  		<input id='submit' class="btn waves-light" type="submit" value="Translate"></input>
 	</form>
 	<div id="dText" class= "container #ef9a9a red lighten-3 dText" style="display:none">
-	"ހުސް"
-			<br>
+			<br>ހުސް
 			<br>
 			<br>
 			<br>
