@@ -25,7 +25,7 @@ var manager = angular.module('manager', [])
 		eTextValue=$form[0][0].value;
 		dTextValue=$form[0][1].value;
 		typeValue=$form[0][3].value;
-		$.post("http://localhost:8080/Translator/services/TranslatorS?wsdl/SetDefinitionO",
+		$.post("http://translate-dhivehi.rhcloud.com/Translator/services/TranslatorS?wsdl/SetDefinitionO",
 		{
 			eText: eTextValue,
 			dText: dTextValue,
@@ -45,7 +45,7 @@ var manager = angular.module('manager', [])
 		
 		eTextValue=$("#sent_eText").val();
 		$('#sentForm .progress').show();
-		$.post("http://localhost:8080/Translator/services/TranslatorS?wsdl/getDefinitionsO",
+		$.post("http://translate-dhivehi.rhcloud.com/Translator/services/TranslatorS?wsdl/getDefinitionsO",
 		{
 			eText: eTextValue
 		}

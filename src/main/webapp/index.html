@@ -53,7 +53,7 @@ eTextValue=document.getElementById("eText").value;
 	if(eTextValue=="")
 		return
 		
-	$.post("http://localhost:8080/Translator/services/TranslatorS?wsdl/Translate",
+	$.post("http://translate-dhivehi.rhcloud.com/Translator/services/TranslatorS?wsdl/Translate",
 	{
 		eText: eTextValue
 	},
