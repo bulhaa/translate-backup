@@ -79,7 +79,7 @@ var manager = angular.module('manager', [])
 		$('#sentForm .progress').show();
 		$.post("http://translate-dhivehi.rhcloud.com/Translator/services/TranslatorS?wsdl/getDefinitionsO",
 		{
-			eText: eTextValue 
+			eText: eTextValue
 		}
 		,
 		function(data){
@@ -163,6 +163,7 @@ var manager = angular.module('manager', [])
 			$('#Arrange-banner').show();
 			//$('.dText').thaana();
 			
+			var caretPos = 0;
             $('.dText').bind('input', function() {
 			// $('.dText').on('input', function() {
 					//$(this).change();
@@ -227,10 +228,40 @@ var manager = angular.module('manager', [])
 				  if(o!=s){
 					$(this)[0].value = s;
 					$(this).change();
-					$(this).caret(c,c);
+					var a=0;
+					if(!$(this).attr('lastText'))
+						$(this).attr('lastText', "");
+					
+					for(; a<$(this).attr('lastText').length && a<$(this).val().length; a++){
+						if($(this).attr('lastText').charAt(a).match($(this).val().charAt(a))==null)
+							break;
+					}
+					a++;
+					if(a==0)
+						a=c+1;
+					 // alert(''.concat(c, ' ',$(this).val().length, ' ', a, $(this).val().charAt(c-1)));
+					  //alert(''.concat(c, ' ',$(this).val().length, ' ', a, ' ', caretPos));
+					
+					//if(c!=0 && $(this).val().length>2)
+					//if((c!=0 && !$(this).val().charAt(c-1).match("\\s")) || c+1 == $(this).val().length)
+					//if((c==0 || (!$(this).val().charAt(c-1).match("\\s")) || c+1 == $(this).val().length))
+					if($(this).attr('lastChar') != $(this).val().charAt($(this).val().length-1))
+					//if(!$(this).attr('lastChar').match($(this).val().charAt($(this).val().length-1)))
+						$(this).caret($(this).val().length, $(this).val().length);
+					else
+						$(this).caret(c,c);
+						//$(this).caret(caretPos,caretPos);
 				  }
-
+				  $(this).attr('lastChar', $(this).val().charAt($(this).val().length-1));
+				  $(this).attr('lastText', $(this).val());
+                caretPos = $(this).caret().start;
 			});
+			//$('.dText').thaana();
+            $('.dText').keydown(function() {
+                caretPos = $(this).caret().start;
+            }).keyup(function() {
+                caretPos = $(this).caret().start;
+            });
 			// $(".dText").change(function() {
 				  // alert( "Handler for .change() called.".concat($(this)[0].value) );
 				  
@@ -280,211 +311,7 @@ var manager = angular.module('manager', [])
 		  };  
 	});
 	
-(function($) {
-    $.fn.thaana = function(options) {
-        var settings = {
-            keyboard: 'phonetic'
-        };
-        return this.each(function() {
-            if (options) {
-                $.extend(settings, options);
-            }
-            var keyboards = {
-                'phonetic': {
-                    33: '!',
-                    34: '"',
-                    35: '#',
-                    36: '$',
-                    37: '%',
-                    38: '&',
-                    39: '\'',
-                    40: ')',
-                    41: '(',
-                    42: '*',
-                    43: '+',
-                    44: '،',
-                    45: '-',
-                    46: '.',
-                    47: '/',
-                    58: ':',
-                    59: '؛',
-                    60: '>',
-                    61: '=',
-                    62: '<',
-                    63: '؟',
-                    64: '@',
-                    65: 'ާ',
-                    66: 'ޞ',
-                    67: 'ޝ',
-                    68: 'ޑ',
-                    69: 'ޭ',
-                    70: 'ﷲ',
-                    71: 'ޣ',
-                    72: 'ޙ',
-                    73: 'ީ',
-                    74: 'ޛ',
-                    75: 'ޚ',
-                    76: 'ޅ',
-                    77: 'ޟ',
-                    78: 'ޏ',
-                    79: 'ޯ',
-                    80: '÷',
-                    81: 'ޤ',
-                    82: 'ޜ',
-                    83: 'ށ',
-                    84: 'ޓ',
-                    85: 'ޫ',
-                    86: 'ޥ',
-                    87: 'ޢ',
-                    88: 'ޘ',
-                    89: 'ޠ',
-                    90: 'ޡ',
-                    91: ']',
-                    92: '\\',
-                    93: '[',
-                    94: '^',
-                    95: '_',
-                    96: '`',
-                    97: 'ަ',
-                    98: 'ބ',
-                    99: 'ޗ',
-                    100: 'ދ',
-                    101: 'ެ',
-                    102: 'ފ',
-                    103: 'ގ',
-                    104: 'ހ',
-                    105: 'ި',
-                    106: 'ޖ',
-                    107: 'ކ',
-                    108: 'ލ',
-                    109: 'މ',
-                    110: 'ނ',
-                    111: 'ޮ',
-                    112: 'ޕ',
-                    113: 'ް',
-                    114: 'ރ',
-                    115: 'ސ',
-                    116: 'ތ',
-                    117: 'ު',
-                    118: 'ވ',
-                    119: 'އ',
-                    120: '×',
-                    121: 'ޔ',
-                    122: 'ޒ',
-                    123: '}',
-                    124: '|',
-                    125: '{',
-                    126: '~'
-                },
-                'typewriter': {
-                    33: '!',
-                    34: '؛',
-                    35: '#',
-                    36: '$',
-                    37: '%',
-                    38: '&',
-                    39: 'ﷲ',
-                    40: ')',
-                    41: '(',
-                    42: '*',
-                    43: '+',
-                    44: 'ށ',
-                    45: '-',
-                    46: 'ޓ',
-                    47: 'ޯ',
-                    58: 'ޡ',
-                    59: 'ފ',
-                    60: '\\',
-                    61: '=',
-                    62: 'ޞ',
-                    63: '؟',
-                    64: '@',
-                    65: '<',
-                    66: 'ޟ',
-                    67: 'ޏ',
-                    68: '.',
-                    69: '“',
-                    70: '،',
-                    71: '"',
-                    72: 'ޥ',
-                    73: 'ޣ',
-                    74: 'ޢ',
-                    75: 'ޘ',
-                    76: 'ޚ',
-                    77: 'ޝ',
-                    78: 'ޛ',
-                    79: 'ޠ',
-                    80: 'ޙ',
-                    81: '×',
-                    82: '/',
-                    83: '>',
-                    84: ':',
-                    85: 'ޜ',
-                    86: 'ޗ',
-                    87: '’',
-                    88: 'ޕ',
-                    89: 'ޤ',
-                    90: 'ޖ',
-                    91: 'ލ',
-                    92: ']',
-                    93: '[',
-                    94: '^',
-                    95: '_',
-                    96: '`',
-                    97: 'ި',
-                    98: 'ޅ',
-                    99: 'ސ',
-                    100: 'ް',
-                    101: 'ާ',
-                    102: 'ަ',
-                    103: 'ެ',
-                    104: 'ވ',
-                    105: 'މ',
-                    106: 'އ',
-                    107: 'ނ',
-                    108: 'ކ',
-                    109: 'ބ',
-                    110: 'ދ',
-                    111: 'ތ',
-                    112: 'ހ',
-                    113: 'ޫ',
-                    114: 'ީ',
-                    115: 'ު',
-                    116: 'ޭ',
-                    117: 'ރ',
-                    118: 'ޔ',
-                    119: 'ޮ',
-                    120: 'ޑ',
-                    121: 'ގ',
-                    122: 'ޒ',
-                    123: '÷',
-                    124: '}',
-                    125: '{',
-                    126: '~'
-                }
-            };
-            $(this).bind('input', function() {
-                var str = $(this).val(),
-                    key = str.substring(str.length - 1),
-                    k = key.charCodeAt(0),
-                    lastLength = $(this).attr('data-length') ? $(this).attr('data-length') : 0,
-                    diff = str.length - lastLength;
-                if (keyboards[settings.keyboard][k] && diff == 1) {
-                    current = $(this).val().substr(0, str.length - 1);
-                    current += keyboards[settings.keyboard][k];
-                    $(this).val(current);
-                } else {
-                    return true;
-                }
-            });
-            $(this).keydown(function() {
-                $(this).attr('data-length', $(this).val().length);
-            }).keyup(function() {
-                $(this).attr('data-length', $(this).val().length);
-            });
-        });
-    };
-})(jQuery);;
+
 		 
 		  
 angular.module('staticSelect', [])
