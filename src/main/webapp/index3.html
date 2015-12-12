@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="manager">
+<html ng-app="manager">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
@@ -18,6 +18,8 @@
     font-size: 200%;
 /*	text-align: right;*/
 	direction: rtl;
+  .draggable { width: 100px; height: 100px; padding: 0.5em; float: left; margin: 10px 10px 10px 0; }
+  .droppable { width: 150px; height: 150px; padding: 0.5em; float: left; margin: 10px; }
 }
     </style>
 	
@@ -27,15 +29,7 @@
   <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   <link rel="stylesheet" href="css/jquery-ui.css">
 	<style type="text/css">
-		html {
-			font-family: GillSans, Calibri;
-		}
-		.dText {
-			font-family: Faruma;
-			font-size: 200%;	
-		}   
-  .draggable { width: 100px; height: 100px; padding: 0.5em; float: left; margin: 10px 10px 10px 0; }
-  .droppable { width: 150px; height: 150px; padding: 0.5em; float: left; margin: 10px; }
+
 	</style>
 </head>
 <body>
