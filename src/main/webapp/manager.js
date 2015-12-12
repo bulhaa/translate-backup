@@ -94,7 +94,7 @@ var manager = angular.module('manager', [])
 				if(d.childNodes[1].childNodes[0]!=null)
 					dText = d.childNodes[1].childNodes[0].data;
 				else
-					dText = "";
+					dText = ""; 
 				// definitions.definition.push({eText:eText, dText:dText, type:type});
 				definitions.addDefinition(eText, dText, type);
 				// definitions.addDefinition();
