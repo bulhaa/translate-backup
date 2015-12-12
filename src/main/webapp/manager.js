@@ -38,7 +38,38 @@ var manager = angular.module('manager', [])
 		});
 		return false;
 	});
-	
+
+	$("#getRule").click(function(){
+		positions = $('.position');
+		var Order = "";
+		var Pattern = "";
+		// for(var a=positions.length-1; a>-1; a--){
+		for(var a=0; a<positions.length; a++){
+			// var d = 
+			Pattern += ''.concat(definitions.definition[a].type, ' ');
+			if($(positions[positions.length-a-1]).find('.draggable').length>0){
+				var i = $(positions[positions.length-a-1]).find('.draggable')[0].id;
+				i = i.replace('word', '');
+				i = positions.length-i;
+				//((int)i)+1
+				Order += ''.concat(i, ' ');
+			}
+			
+
+		}
+		
+		var ruleValue = Pattern.concat('0 ', Order);
+		$.post("http://translate-dhivehi.rhcloud.com/Translator/services/TranslatorS?wsdl/setRuleO",
+		{
+			eText: ruleValue
+		}
+		,
+		function(data){
+			$("#feedback").html(data.childNodes[0].childNodes[0].data);
+			$("#feedback").show();
+		});
+	});
+
 	$("#sentForm").submit(function(){
 		if($('#sentForm .progress').is(':visible'))
 			return false;
@@ -51,6 +82,7 @@ var manager = angular.module('manager', [])
 		}
 		,
 		function(data){
+			$( ".draggable" ).remove();
 			var dArr = data.childNodes[0];
 				definitions.definition = [];
 			for(var a=0; a<dArr.childElementCount; a++){
@@ -76,6 +108,9 @@ var manager = angular.module('manager', [])
 					$('#dText'+(a)).addClass("valid");
 				}else
 					$('#dText'+(a)).addClass("invalid");
+				
+				$('#dText'+(a)).addClass("dv");
+				thaanaKeyboard.setHandlerById('dText'+(a),"enable");
 					
 				$('#type'+(a)).val(d.childNodes[2].childNodes[0].data);
 				if(d.childNodes[2].childNodes[0].data == 2147483647){
@@ -83,19 +118,46 @@ var manager = angular.module('manager', [])
 					$('#type'+(a)).val("");
 				}
 				$('#type'+(a)).material_select();
-				
-			$( ".word" ).draggable();
-			$( ".position" ).droppable({
+				$('#form'+(a)).show();
+			}
+			$('.droppable').show();
+			$('#getRule').show();
+			$( ".draggable" ).draggable({
+			  appendTo: "body",
+			  helper: "clone"
+			});
+			$( ".droppable" ).droppable({
+			  activeClass: "ui-state-default",
+			  hoverClass: "ui-state-hover",
+			  accept: ":not(.ui-sortable-helper)",
 			  drop: function( event, ui ) {
+				// $( this ).find( ".placeholder" ).remove();
+				// $( "<li></li>" ).text( ui.draggable.text() ).appendTo( this );
+				$( ui.draggable).appendTo( this );
+			  },
+/* 			  out: function( event, ui ) {
 				$( this )
-				  .addClass( "ui-state-highlight" );
-				  /* .find( "p" )
-					.html( "Dropped!" ); */
+				  .remove
+			  } */
+			}).sortable({
+			  items: "li:not(.placeholder)",
+			  sort: function() {
+				// gets added unintentionally by droppable interacting with sortable
+				// using connectWithSortable fixes this, but doesn't allow you to customize active/hoverClass options
+				$( this ).removeClass( "ui-state-default" );
 			  }
 			});
-			
-				$('#sentForm .progress').hide();
-			}
+			/* 		$( ".position" ).droppable({
+ 			  drop: function( event, ui ) {
+				$( this )
+				  .addClass( "ui-state-highlight" );
+			  },
+			  out: function( event, ui ) {
+				$( this )
+				  .removeClass( "ui-state-highlight" );
+			  }
+			}); */
+			$('#sentForm .progress').hide();
 		});
 
 		return false;
@@ -131,6 +193,7 @@ var manager = angular.module('manager', [])
 			return items.slice().reverse();
 		  };  
 	});
+	
 		 
 		  
 angular.module('staticSelect', [])

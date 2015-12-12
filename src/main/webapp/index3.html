@@ -4,12 +4,28 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
   <title>Manage Definitions</title>
+  
+	<style type="text/css">
+@charset "utf-8";
 
+@font-face 		{ font-family: 'MV_Faseyha'; src:url('fonts/mv_faseyha.otf') format('opentype') }
+/* @font-face 		{ font-family: 'MV_Waheed'; src:url('fonts/mv_waheed.otf') format('opentype') } */
+	  html {
+    font-family: GillSans, Calibri;
+  }
+.dText {
+    font-family: MV_Faseyha;
+    font-size: 200%;
+/*	text-align: right;*/
+	direction: rtl;
+}
+    </style>
+	
   <!-- CSS  -->
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="css/icon.css" rel="stylesheet">
   <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  <link rel="stylesheet" href="css/jquery-ui.css">
 	<style type="text/css">
 		html {
 			font-family: GillSans, Calibri;
@@ -18,8 +34,8 @@
 			font-family: Faruma;
 			font-size: 200%;	
 		}   
-  #draggable { width: 100px; height: 100px; padding: 0.5em; float: left; margin: 10px 10px 10px 0; }
-  #droppable { width: 150px; height: 150px; padding: 0.5em; float: left; margin: 10px; }
+  .draggable { width: 100px; height: 100px; padding: 0.5em; float: left; margin: 10px 10px 10px 0; }
+  .droppable { width: 150px; height: 150px; padding: 0.5em; float: left; margin: 10px; }
 	</style>
 </head>
 <body>
@@ -43,7 +59,6 @@
         <h5 class="header col s12 light">Modify dhivehi words and word types</h5>
       </div>
       <div class="row center">
-        <!-- <a href="http://materializecss.com/getting-started.html" id="download-button" class="btn-large waves-effect waves-light orange">Get Started</a> -->
       </div>
       <br><br>
 
@@ -70,13 +85,13 @@
       <div ng-controller="managerController as definitions" class="row">
 		<div  class="row center">
 			<div ng-repeat="d in definitions.definition" class="definitionForm input-field col container s12 m6 l3 center">
-				<form class="" id="form{{$index}}" method="post" align = "center" action="">
+				<form class="" id="form{{$index}}" method="post" align = "center" action="" style="display:none">
 				<div class="input-field">
 					<input id="eText{{$index}}" type="text" class="validate" ng-model="d.eText">
 					<label id="eTextl{{$index}}" for="eText{{$index}}">English word</label>
 				</div>
 				<div class="input-field">
-					<input id="dText{{$index}}" type="text" class="validate dText" ng-model="d.dText">
+					<input id="dText{{$index}}" type="text" class="validate dText dv" ng-model="d.dText">
 					<label id="dTextl{{$index}}" for="dText{{$index}}">Dhivehi word</label>
 				</div>
 				<div class="input-field">
@@ -118,7 +133,6 @@
 							<option value="34">Wh­pronoun</option>
 							<option value="35">Possessive wh­pronoun</option>
 							<option value="36">Wh­adverb</option>
-							<option value="37"></option>
 					</select>
 					<label>Word type</label>
 				</div>
@@ -129,16 +143,23 @@
 		</div>
 		<div class="row center">
 			<div ng-repeat="d in definitions.definition | reverse" >
-
- 
-				<div id="droppable" class="ui-widget-header position">
-					<div id="draggable" class="ui-widget-content word">
+				<div id="position{{$index}}" class="ui-widget-header droppable position ui-state-highlight" style="display:none">
+				  <p>Drop here</p>
+					<div id="word{{$index}}" class="ui-widget-content draggable word">
 					  <p ng-model="d.dText" class='dText'>{{d.dText}}</p>
 					</div>
-				  <p>Drop here</p>
 				</div>
 			</div>
 		</div>
+		<div class="row center">
+			<div>
+				<div id="positionT" class="ui-widget-header droppable" style="display:none">
+				  <p>Drop unused words here</p>
+				</div>
+			</div>
+				<input id="getRule" class="waves-light btn" type="submit" value="Generate Rule" style="display:none"></input>
+		</div>
+		
 		<div id="feedback" class= "container #ef9a9a red lighten-3l12" style="display:none">
 				<br>
 				<br>
@@ -175,8 +196,8 @@
         <div class="col l3 s12">
           <h5 class="white-text"></h5>
           <ul>
-		<div id="pb-opennlp" class= "container l2 center">
-			<a href="https://opennlp.apache.org/" target="_blank"><img src="images/pb-opennlp.jpg" alt=""  class="circle responsive-img l2" height="300" width="300"></a>
+		<div id="pb-opennlp" class= "container l12 center">
+			<a href="https://opennlp.apache.org/" target="_blank"><img src="images/pb-opennlp.jpg" alt=""  class="circle responsive-img l12" height="300" width="300"></a>
 		</div>
 		<li><a class="white-text" href="#!"></a></li>
             <li><a class="white-text" href="#!"></a></li>
@@ -195,23 +216,17 @@
 
 
   <!--  Scripts-->
-  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+  <script src="js/jquery-2.1.1.min.js"></script>
+  <script src="js/jquery-ui.js"></script>
   <script src="../../bin/materialize.js"></script>
   <script src="js/init.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+  <script type="text/javascript" src="js/jtk-4.2.1.pack.js"></script>
+  <script src="js/angular.min.js"></script>
+  <script src="js/jquery.ui.touch-punch.min.js"></script>
 	<script>
 		$(document).ready(function(){
 			$('select').material_select();
-			$( ".word" ).draggable();
-			$( ".position" ).droppable({
-			drop: function( event, ui ) {
-				$( this )
-				  .addClass( "ui-state-highlight" )
-				  .find( "p" )
-					.html( "Dropped!" );
-			  }
-			});
+			thaanaKeyboard.defaultKeyboard='phonetic';
 		});
 	</script>
 	<script src="manager.js"></script>
