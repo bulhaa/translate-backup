@@ -38,7 +38,8 @@ var manager = angular.module('manager', [])
 		});
 		return false;
 	});
-
+	
+	
 	$("#getRule").click(function(){
 		positions = $('.position');
 		var Order = "";
@@ -74,7 +75,7 @@ var manager = angular.module('manager', [])
 		if($('#sentForm .progress').is(':visible'))
 			return false;
 		
-		eTextValue=$("#sent_eText").val();
+	eTextValue=$("#sent_eText").val();
 		$('#sentForm .progress').show();
 		$.post("http://translate-dhivehi.rhcloud.com/Translator/services/TranslatorS?wsdl/getDefinitionsO",
 		{
@@ -110,7 +111,8 @@ var manager = angular.module('manager', [])
 					$('#dText'+(a)).addClass("invalid");
 				
 				$('#dText'+(a)).addClass("dv");
-				thaanaKeyboard.setHandlerById('dText'+(a),"enable");
+				
+				// thaanaKeyboard.setHandlerById('dText'+(a),"enable");
 					
 				$('#type'+(a)).val(d.childNodes[2].childNodes[0].data);
 				if(d.childNodes[2].childNodes[0].data == 2147483647){
@@ -158,6 +160,87 @@ var manager = angular.module('manager', [])
 			  }
 			}); */
 			$('#sentForm .progress').hide();
+			$('#Arrange-banner').show();
+			
+			$('.dText').on('input', function() {
+				  // $(this)[0].value = 'test';
+				  var c = $(this).caret().start;
+				  var s = $(this)[0].value;
+				  var o = s;
+				  
+				  s = s.replace('q', 'ް');
+				  s = s.replace('w', 'އ');
+				  s = s.replace('e', 'ެ');
+				  s = s.replace('r', 'ރ');
+				  s = s.replace('t', 'ތ');
+				  s = s.replace('y', 'ޔ');
+				  s = s.replace('u', 'ު');
+				  s = s.replace('i', 'ި');
+				  s = s.replace('o', 'ޮ');
+				  s = s.replace('p', 'ޕ');
+				  s = s.replace('a', 'ަ');
+				  s = s.replace('s', 'ސ');
+				  s = s.replace('d', 'ދ');
+				  s = s.replace('f', 'ފ');
+				  s = s.replace('g', 'ގ');
+				  s = s.replace('h', 'ހ');
+				  s = s.replace('j', 'ޖ');
+				  s = s.replace('k', 'ކ');
+				  s = s.replace('l', 'ލ');
+				  s = s.replace('z', 'ޒ');
+				  s = s.replace('x', '×');
+				  s = s.replace('c', 'ޗ');
+				  s = s.replace('v', 'ވ');
+				  s = s.replace('b', 'ބ');
+				  s = s.replace('n', 'ނ');
+				  s = s.replace('m', 'މ');
+				  s = s.replace('Q', 'ޤ');
+				  s = s.replace('W', 'ޢ');
+				  s = s.replace('E', 'ޭ');
+				  s = s.replace('R', 'ޜ');
+				  s = s.replace('T', 'ޓ');
+				  s = s.replace('Y', 'ޠ');
+				  s = s.replace('U', 'ޫ');
+				  s = s.replace('I', 'ީ');
+				  s = s.replace('O', 'ޯ');
+				  s = s.replace('P', '÷');
+				  s = s.replace('A', 'ާ');
+				  s = s.replace('S', 'ށ');
+				  s = s.replace('D', 'ޑ');
+				  s = s.replace('F', 'ﷲ');
+				  s = s.replace('G', 'ޣ');
+				  s = s.replace('H', 'ޙ');
+				  s = s.replace('J', 'ޛ');
+				  s = s.replace('K', 'ޚ');
+				  s = s.replace('L', 'ޅ');
+				  s = s.replace('Z', 'ޡ');
+				  s = s.replace('X', 'ޘ');
+				  s = s.replace('C', 'ޝ');
+				  s = s.replace('V', 'ޥ');
+				  s = s.replace('B', 'ޞ');
+				  s = s.replace('N', 'ޏ');
+				  s = s.replace('M', 'ޟ');
+  
+				  if(o!=s){
+					$(this).caret(c,c);
+					$(this)[0].value = s;
+					$(this).change();
+				  }
+
+			});
+				// $(".dText").change(function() {
+				  // alert( "Handler for .change() called.".concat($(this)[0].value) );
+				  
+				// });	
+// $('input[name=myInput]').change(function() {
+	  // alert( "Handler for .change() called." );
+// });
+
+
+	// $(".dText").bind("change", function() {    
+		// $(this).value = $(this).value;
+	// });
+
 		});
 
 		return false;

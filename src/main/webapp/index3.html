@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="manager">
+<html lang="en" ng-app="manager">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
@@ -18,8 +18,6 @@
     font-size: 200%;
 /*	text-align: right;*/
 	direction: rtl;
-  .draggable { width: 100px; height: 100px; padding: 0.5em; float: left; margin: 10px 10px 10px 0; }
-  .droppable { width: 150px; height: 150px; padding: 0.5em; float: left; margin: 10px; }
 }
     </style>
 	
@@ -29,7 +27,9 @@
   <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   <link rel="stylesheet" href="css/jquery-ui.css">
 	<style type="text/css">
-
+ 
+  .draggable { width: 100px; height: 100px; padding: 0.5em; float: left; margin: 10px 10px 10px 0; }
+  .droppable { width: 150px; height: 150px; padding: 0.5em; float: left; margin: 10px; }
 	</style>
 </head>
 <body>
@@ -65,7 +65,7 @@
   <form class="" id="sentForm" method="post" align = "center" action="">
     <div class="input-field">
 	  <input id="sent_eText" type="text" class="validate">
-	  <label for="sent_eText">English sentence</label>
+	  <label id="sent_eTextL" for="sent_eText">English sentence</label>
 	</div>
 	<input class="waves-effect waves-light btn" type="submit" value="Lookup definitions"></input>
 	<div class="progress" style="display:none">
@@ -81,7 +81,7 @@
 			<div ng-repeat="d in definitions.definition" class="definitionForm input-field col container s12 m6 l3 center">
 				<form class="" id="form{{$index}}" method="post" align = "center" action="" style="display:none">
 				<div class="input-field">
-					<input id="eText{{$index}}" type="text" class="validate" ng-model="d.eText">
+					<input id="eText{{$index}}" type="text" class="validate disabled" disabled="disabled" ng-model="d.eText">
 					<label id="eTextl{{$index}}" for="eText{{$index}}">English word</label>
 				</div>
 				<div class="input-field">
@@ -135,10 +135,28 @@
 			</div>
 
 		</div>
+		
+  <div class="section no-pad-bot" id="Arrange-banner" style='display:none'>
+    <div class="container">
+      <br><br>
+      <h1 class="header center orange-text">Rearrange words</h1>
+      <div class="row center">
+        <h5 class="header col s12 light">Arrange the dhivehi words in Right to Left order</h5>
+      </div>
+      <div class="row center">
+      </div>
+      <br><br>
+
+    </div>
+  </div>
+		
+		
+		
+		
 		<div class="row center">
 			<div ng-repeat="d in definitions.definition | reverse" >
 				<div id="position{{$index}}" class="ui-widget-header droppable position ui-state-highlight" style="display:none">
-				  <p>Drop here</p>
+				  <p>{{definitions.definition.length-$index}}. Drop here</p>
 					<div id="word{{$index}}" class="ui-widget-content draggable word">
 					  <p ng-model="d.dText" class='dText'>{{d.dText}}</p>
 					</div>
@@ -181,7 +199,7 @@
         <div class="col l3 s12">
           <h5 class="white-text">Developers</h5>
           <ul>
-            <li><a class="white-text" href="#!">Hammadh</a></li>
+            <li><a class="white-text" href="mailto:freestyle.reunion@gmail.com" target="_blank">Hammadh</a></li>
             <li><a class="white-text" href="#!">Ashraq</a></li>
             <li><a class="white-text" href="#!"></a></li>
             <li><a class="white-text" href="#!"></a></li>
@@ -203,13 +221,17 @@
     </div>
     <div class="footer-copyright">
       <div class="container">
-      Made by <a class="orange-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+      Template by <a class="orange-text text-lighten-3" href="http://materializecss.com" target="_blank">Materialize</a>
       </div>
     </div>
   </footer>
 
 
   <!--  Scripts-->
+  <script type="text/javascript" src="js/jquery.js"></script>
+  <script type="text/javascript">
+	var jQuery_1_4_2 = $;
+  </script>
   <script src="js/jquery-2.1.1.min.js"></script>
   <script src="js/jquery-ui.js"></script>
   <script src="../../bin/materialize.js"></script>
@@ -217,12 +239,16 @@
   <script type="text/javascript" src="js/jtk-4.2.1.pack.js"></script>
   <script src="js/angular.min.js"></script>
   <script src="js/jquery.ui.touch-punch.min.js"></script>
+  <script type="text/javascript" src="js/jquery.caret.1.02.js"></script>
+	<script src="manager.js"></script>
 	<script>
 		$(document).ready(function(){
 			$('select').material_select();
 			thaanaKeyboard.defaultKeyboard='phonetic';
+			$('#sent_eText').focus();
+			$('#sent_eText').val(" ");
+			$('#sent_eTextL').addClass("active");
 		});
 	</script>
-	<script src="manager.js"></script>
   </body>
 </html>
