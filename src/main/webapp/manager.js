@@ -79,7 +79,7 @@ var manager = angular.module('manager', [])
 		$('#sentForm .progress').show();
 		$.post("http://translate-dhivehi.rhcloud.com/Translator/services/TranslatorS?wsdl/getDefinitionsO",
 		{
-			eText: eTextValue
+			eText: eTextValue 
 		}
 		,
 		function(data){
