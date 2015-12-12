@@ -161,11 +161,13 @@ var manager = angular.module('manager', [])
 			}); */
 			$('#sentForm .progress').hide();
 			$('#Arrange-banner').show();
-			$('.dText').thaana();
-			$('.dText').on('input', function() {
-					$(this).change();
+			//$('.dText').thaana();
+			
+            $('.dText').bind('input', function() {
+			// $('.dText').on('input', function() {
+					//$(this).change();
 				  // $(this)[0].value = 'test';
-/* 				  var c = $(this).caret().start;
+				  var c = $(this).caret().start;
 				  var s = $(this)[0].value;
 				  var o = s;
 				  
@@ -223,13 +225,13 @@ var manager = angular.module('manager', [])
 				  s = s.replace('M', 'ޟ');
   
 				  if(o!=s){
-					$(this).caret(c,c);
 					$(this)[0].value = s;
 					$(this).change();
+					$(this).caret(c,c);
 				  }
- */
+
 			});
-				// $(".dText").change(function() {
+			// $(".dText").change(function() {
 				  // alert( "Handler for .change() called.".concat($(this)[0].value) );
 				  
 				// });	
