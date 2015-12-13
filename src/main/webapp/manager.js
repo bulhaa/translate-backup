@@ -25,7 +25,7 @@ var manager = angular.module('manager', [])
 		eTextValue=$form[0][0].value;
 		dTextValue=$form[0][1].value;
 		typeValue=$form[0][3].value;
-		$.post("http://translate-dhivehi.rhcloud.com/Translator/services/TranslatorS?wsdl/SetDefinitionO",
+		$.post("http://localhost:8080/Translator/services/TranslatorS?wsdl/SetDefinitionO",
 		{
 			eText: eTextValue,
 			dText: dTextValue,
@@ -60,7 +60,7 @@ var manager = angular.module('manager', [])
 		}
 		
 		var ruleValue = Pattern.concat('0 ', Order);
-		$.post("http://translate-dhivehi.rhcloud.com/Translator/services/TranslatorS?wsdl/setRuleO",
+		$.post("http://localhost:8080/Translator/services/TranslatorS?wsdl/setRuleO",
 		{
 			eText: ruleValue
 		}
@@ -77,7 +77,7 @@ var manager = angular.module('manager', [])
 		
 	eTextValue=$("#sent_eText").val();
 		$('#sentForm .progress').show();
-		$.post("http://translate-dhivehi.rhcloud.com/Translator/services/TranslatorS?wsdl/getDefinitionsO",
+		$.post("http://localhost:8080/Translator/services/TranslatorS?wsdl/getDefinitionsO",
 		{
 			eText: eTextValue
 		}
@@ -163,7 +163,7 @@ var manager = angular.module('manager', [])
 			$('#Arrange-banner').show();
 			//$('.dText').thaana();
 			
-			var caretPos = 0;
+			//var caretPos = 0;
             $('.dText').bind('input', function() {
 			// $('.dText').on('input', function() {
 					//$(this).change();
@@ -240,7 +240,7 @@ var manager = angular.module('manager', [])
 					if(a==0)
 						a=c+1;
 					 // alert(''.concat(c, ' ',$(this).val().length, ' ', a, $(this).val().charAt(c-1)));
-					  //alert(''.concat(c, ' ',$(this).val().length, ' ', a, ' ', caretPos));
+					 // alert(''.concat(c, ' ',$(this).val().length, ' ', a, ' '));
 					
 					//if(c!=0 && $(this).val().length>2)
 					//if((c!=0 && !$(this).val().charAt(c-1).match("\\s")) || c+1 == $(this).val().length)
@@ -248,13 +248,17 @@ var manager = angular.module('manager', [])
 					if($(this).attr('lastChar') != $(this).val().charAt($(this).val().length-1))
 					//if(!$(this).attr('lastChar').match($(this).val().charAt($(this).val().length-1)))
 						$(this).caret($(this).val().length, $(this).val().length);
+					else if(c==0)
+						$(this).caret(a,a);
+					else if($(this).val().charAt(c-1).match("\\s"))
+						$(this).caret(c+1,c+1);
 					else
 						$(this).caret(c,c);
 						//$(this).caret(caretPos,caretPos);
 				  }
 				  $(this).attr('lastChar', $(this).val().charAt($(this).val().length-1));
 				  $(this).attr('lastText', $(this).val());
-                caretPos = $(this).caret().start;
+                //caretPos = $(this).caret().start;
 			});
 			//$('.dText').thaana();
             $('.dText').keydown(function() {
