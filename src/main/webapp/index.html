@@ -1,6 +1,10 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<title>English-Dhivehi Translator</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>Manage Definitions</title>
+  
 	<style type="text/css">
 @charset "utf-8";
 
@@ -16,19 +20,129 @@
 	direction: rtl;
 }
     </style>
-	<!--Import Google Icon Font-->
-	<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-	<!-- Compiled and minified CSS -->
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
-
-      <!--Let browser know website is optimized for mobile-->
-      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
+	
+  <!-- CSS  -->
+  <link href="css/icon.css" rel="stylesheet">
+  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link rel="stylesheet" href="css/jquery-ui.css">
+	<style type="text/css">
+ 
+  .draggable { width: 100px; height: 100px; padding: 0.5em; float: left; margin: 10px 10px 10px 0; }
+  .droppable { width: 150px; height: 150px; padding: 0.5em; float: left; margin: 10px; }
+	</style>
 </head>
 <body>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<!-- Compiled and minified JavaScript -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
+  <nav class="light-blue lighten-1" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">English-Dhivehi Translator</a>
+      <ul class="right hide-on-med-and-down">
+		<li class="active"><a href="index.html"><i class="material-icons">home</i></a></li>
+		<li><a href="index3.html"><i class="material-icons">edit</i></a></li>
+		<li><a href="#"><i class="material-icons">get_app</i></a></li>
+     </ul>
+
+      <ul id="nav-mobile" class="side-nav">
+		<li class="active"><a href="index.html"><i class="material-icons left">home</i>Home</a></li>
+		<li><a href="index3.html"><i class="material-icons left">edit</i>Manage</a></li>
+		<li><a href="#"><i class="material-icons left">get_app</i>Download</a></li>
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+  <div class="section no-pad-bot" id="index-banner">
+    <div class="container">
+      <!-- <br><br> -->
+      <!-- <h1 class="header center orange-text">Translate</h1> -->
+      <div class="row center">
+        <!-- <h5 class="header col s12 light">Modify dhivehi words and word types</h5> -->
+      </div>
+      <!-- <div class="row center">
+      </div> -->
+      <br><br>
+
+    </div>
+  </div>
+
+
+  <div class="container">
+
+	<form id="form" method="post" align = "center" action="">
+				<div class="input-field col s12">
+					<input id="eText" type="text" class="validate">
+					<label for="eText">Enter english text</label>
+				</div>
+ 		<input id='submit' class="btn waves-light" type="submit" value="Translate"></input>
+	</form>
+		<br>
+	<div id="dText" class= "#ef9a9a red lighten-3 dText" style="display:none">
+			<br>ހުސް
+			<br>
+			<br>
+			<br>
+	</div>
+		<br>
+	<div id='improve-div' class="row center" style='display:none'>
+      <br><br>
+	  Try translate 'Welcome to the new generation of club' or click improve translation
+      <br><br>	  
+		<a href="index3.html" id="improve-button" class="btn-large waves-effect waves-light orange">Improve Translation</a>
+	</div>
+  </div>
+
+  <footer class="page-footer orange">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">About</h5>
+          <p class="grey-text text-lighten-4">We are a team of college students working on this project like it's our full time job. This project is too huge to accomplish on our own and we need your help to make this a success. Any help is greatly appreciated.</p>
+
+
+        </div>
+        <div class="col l3 s12">
+          <h5 class="white-text">Developers</h5>
+          <ul>
+            <li><a class="white-text" href="mailto:freestyle.reunion@gmail.com" target="_blank">Hammadh</a></li>
+            <li><a class="white-text" href="#!">Ashraq</a></li>
+            <li><a class="white-text" href="#!"></a></li>
+            <li><a class="white-text" href="#!"></a></li>
+          </ul>
+        </div>
+        <div class="col l3 s12">
+          <h5 class="white-text"></h5>
+          <ul>
+		<div id="pb-opennlp" class= "container l12 center">
+			<a href="https://opennlp.apache.org/" target="_blank"><img src="images/pb-opennlp.jpg" alt=""  class="circle responsive-img l12" height="300" width="300"></a>
+		</div>
+		<li><a class="white-text" href="#!"></a></li>
+            <li><a class="white-text" href="#!"></a></li>
+            <li><a class="white-text" href="#!"></a></li>
+            <li><a class="white-text" href="#!"></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+      Template by <a class="orange-text text-lighten-3" href="http://materializecss.com" target="_blank">Materialize</a>
+      </div>
+    </div>
+  </footer>
+
+
+  <!--  Scripts-->
+  <script type="text/javascript" src="js/jquery.js"></script>
+  <script type="text/javascript">
+	var jQuery_1_4_2 = $;
+  </script>
+  <script src="js/jquery-2.1.1.min.js"></script>
+  <script src="js/jquery-ui.js"></script>
+  <script src="../../bin/materialize.js"></script>
+  <script src="js/init.js"></script>
+  <script type="text/javascript" src="js/jtk-4.2.1.pack.js"></script>
+  <script src="js/angular.min.js"></script>
+  <script src="js/jquery.ui.touch-punch.min.js"></script>
+  <script type="text/javascript" src="js/jquery.caret.1.02.js"></script>
+	<script src="manager.js"></script>
 <script>
 
 $(document).ready(function(){
@@ -58,34 +172,16 @@ eTextValue=document.getElementById("eText").value;
 		eText: eTextValue
 	},
 	function(data){
-		dText.innerHTML=data.childNodes[0].childNodes[0].data;
+		var translation = data.childNodes[0].childNodes[0].data;
+		dText.innerHTML = translation;
 		$("#dText").show();
+		if(translation.indexOf('(Word to word translation)') > -1)
+			$("#improve-div").show();
+		else
+			$("#improve-div").hide();
 	});
 	return;
 }
 </script>
-
-	<div class="container">
-		<h1 >Translator</h1>
-	</div>
-<div class="container" align = "center">
-	<form id="form" method="post" align = "center" action="">
-				<div class="input-field col s12">
-					<input id="eText" type="text" class="validate">
-					<label for="eText">Enter english text</label>
-				</div>
- 		<input id='submit' class="btn waves-light" type="submit" value="Translate"></input>
-	</form>
-	<div id="dText" class= "container #ef9a9a red lighten-3 dText" style="display:none">
-			<br>ހުސް
-			<br>
-			<br>
-			<br>
-	</div>
-</div>
-
-<script>
-</script>
-
-</body>
+  </body>
 </html>
