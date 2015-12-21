@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>Manage Definitions</title>
+  
+	<style type="text/css">
+@charset "utf-8";
+
+@font-face 		{ font-family: 'MV_Faseyha'; src:url('fonts/mv_faseyha.otf') format('opentype') }
+/* @font-face 		{ font-family: 'MV_Waheed'; src:url('fonts/mv_waheed.otf') format('opentype') } */
+	  html {
+    font-family: GillSans, Calibri;
+  }
+.dText {
+    font-family: MV_Faseyha;
+    font-size: 200%;
+/*	text-align: right;*/
+	direction: rtl;
+}
+    </style>
+	
+  <!-- CSS  -->
+  <link href="css/icon.css" rel="stylesheet">
+  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link rel="stylesheet" href="css/jquery-ui.css">
+	<style type="text/css">
+ 
+  .draggable { width: 100px; height: 100px; padding: 0.5em; float: left; margin: 10px 10px 10px 0; }
+  .droppable { width: 150px; height: 150px; padding: 0.5em; float: left; margin: 10px; }
+	</style>
+</head>
+<body>
+  <nav class="light-blue lighten-1" role="navigation">
+    <div class="nav-wrapper container">
+	  <a id="logo-container" href="index.html" class="brand-logo">English-Dhivehi Translator</a>
+      <ul class="right hide-on-med-and-down">
+		<li><a href="index.html"><i class="material-icons">home</i></a></li>
+		<li><a href="manage.html"><i class="material-icons">edit</i></a></li>
+		<li class="active"><a href="download.html"><i class="material-icons">get_app</i></a></li>
+     </ul>
+
+      <ul id="nav-mobile" class="side-nav">
+		<li><a href="index.html"><i class="material-icons left">home</i>Home</a></li>
+		<li><a href="manage.html"><i class="material-icons left">edit</i>Manage</a></li>
+		<li class="active"><a href="download.html"><i class="material-icons left">get_app</i>Download</a></li>
+      </ul>
+	  <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+	</div>
+  </nav>
+  <div class="section no-pad-bot" id="index-banner">
+    <div class="container">
+      <!-- <br><br> -->
+      <!-- <h1 class="header center orange-text">Translate</h1> -->
+      <div class="row center">
+        <!-- <h5 class="header col s12 light">Modify dhivehi words and word types</h5> -->
+      </div>
+      <!-- <div class="row center">
+      </div> -->
+      <br><br>
+
+    </div>
+  </div>
+
+
+  <div class="section no-pad-bot" id="Arrange-banner">
+    <div class="container">
+      <br><br>
+      <h1 class="header center orange-text">Download Dictionary</h1>
+      <div class="row center">
+        <h5 class="header col s12 light"></h5>
+      </div>
+      <div class="row center">
+      </div>
+
+    </div>
+  </div>
+  
+	<div id='download-div' class="row center">
+      <br>
+		<a id="download-button" class="btn-large waves-effect waves-light">Download</a>
+      <br><br>	
+	</div>
+
+  <footer class="page-footer orange">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">About</h5>
+          <p class="grey-text text-lighten-4">We are a team of college students working on this project like it's our full time job. This project is too huge to accomplish on our own and we need your help to make this a success. Any help is greatly appreciated.</p>
+
+
+        </div>
+        <div class="col l3 s12">
+          <h5 class="white-text">Developers</h5>
+          <ul>
+            <li><a class="white-text" href="mailto:freestyle.reunion@gmail.com" target="_blank">Hammadh</a></li>
+            <li><a class="white-text" href="#!">Ashraq</a></li>
+            <li><a class="white-text" href="#!"></a></li>
+            <li><a class="white-text" href="#!"></a></li>
+          </ul>
+        </div>
+        <div class="col l3 s12">
+          <h5 class="white-text"></h5>
+          <ul>
+		<div id="pb-opennlp" class= "container l12 center">
+			<a href="https://opennlp.apache.org/" target="_blank"><img src="images/pb-opennlp.jpg" alt=""  class="circle responsive-img l12" height="300" width="300"></a>
+		</div>
+		<li><a class="white-text" href="#!"></a></li>
+            <li><a class="white-text" href="#!"></a></li>
+            <li><a class="white-text" href="#!"></a></li>
+            <li><a class="white-text" href="#!"></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+      Template by <a class="orange-text text-lighten-3" href="http://materializecss.com" target="_blank">Materialize</a>
+      </div>
+    </div>
+  </footer>
+
+
+  <!--  Scripts-->
+  <script type="text/javascript" src="js/jquery.js"></script>
+  <script type="text/javascript">
+	var jQuery_1_4_2 = $;
+  </script>
+  <script src="js/jquery-2.1.1.min.js"></script>
+  <script src="js/jquery-ui.js"></script>
+  <script src="../../bin/materialize.js"></script>
+  <script src="js/init.js"></script>
+  <script type="text/javascript" src="js/jtk-4.2.1.pack.js"></script>
+  <script src="js/angular.min.js"></script>
+  <script src="js/jquery.ui.touch-punch.min.js"></script>
+  <script type="text/javascript" src="js/jquery.caret.1.02.js"></script>
+<script>
+	$(document).ready(function(){
+		$("#download-button").click(function(){
+			$.post("http://192.168.1.100:8080/Translator/services/TranslatorS?wsdl/getDictionaryO",
+			{
+				eText: "blank"
+			},
+			function(data){
+				// var data = [["name1", "city1", "some other info"], ["name2", "city2", "more info"]];
+				var csvContent = "data:text/csv;charset=utf-8,";
+				// data.childNodes[0].forEach(function(infoArray, index){
+
+				   // dataString = infoArray.join(",");
+				   // csvContent += index < data.length ? dataString+ "\n" : dataString;
+
+				// });
+				var d = data.childNodes[0].childNodes;
+				for(var a=0; a<d.length; a++){
+					csvContent += ''.concat(d[a].childNodes[0].childNodes[0].data, ', ', d[a].childNodes[1].childNodes[0].data, ', ', d[a].childNodes[2].childNodes[0].data, '\n');
+				}
+				
+				var encodedUri = encodeURI(csvContent);
+				<!-- window.open(encodedUri); -->
+				
+				var link = document.createElement("a");
+				link.setAttribute("href", encodedUri);
+				link.setAttribute("download", "dictionary.csv");
+
+				link.click(); // This will download the data file named "my_data.csv".
+			});
+
+			event.preventDefault();
+		});
+	});
+</script>
+  </body>
+</html>
