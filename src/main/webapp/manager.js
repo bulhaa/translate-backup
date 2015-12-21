@@ -324,7 +324,7 @@ angular.module('staticSelect', [])
     singleSelect: null,
     multipleSelect: [],
     option1: 'option-1',
-   }; 
+   };
 
    $scope.forceUnknownOption = function() {
      $scope.data.singleSelect = 'nonsense';

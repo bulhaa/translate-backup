@@ -34,7 +34,8 @@
 </head>
 <body>
   <nav class="light-blue lighten-1" role="navigation">
-    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">English-Dhivehi Translator</a>
+    <div class="nav-wrapper container">
+	  <a id="logo-container" href="index.html" class="brand-logo">English-Dhivehi Translator</a>
       <ul class="right hide-on-med-and-down">
 		<li class="active"><a href="index.html"><i class="material-icons">home</i></a></li>
 		<li><a href="index3.html"><i class="material-icons">edit</i></a></li>
@@ -46,8 +47,8 @@
 		<li><a href="index3.html"><i class="material-icons left">edit</i>Manage</a></li>
 		<li><a href="#"><i class="material-icons left">get_app</i>Download</a></li>
       </ul>
-      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
-    </div>
+	  <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+	</div>
   </nav>
   <div class="section no-pad-bot" id="index-banner">
     <div class="container">
@@ -66,12 +67,15 @@
 
   <div class="container">
 
-	<form id="form" method="post" align = "center" action="">
+	<form id="sentForm" method="post" align = "center" action="">
 				<div class="input-field col s12">
 					<input id="eText" type="text" class="validate">
-					<label for="eText">Enter english text</label>
+					<label id="eTextL" for="eText">Enter english text</label>
 				</div>
  		<input id='submit' class="btn waves-light" type="submit" value="Translate"></input>
+	<div class="progress" style="display:none">
+	  <div class="indeterminate"></div>
+	</div>
 	</form>
 		<br>
 	<div id="dText" class= "#ef9a9a red lighten-3 dText" style="display:none">
@@ -82,7 +86,7 @@
 	</div>
 		<br>
 	<div id='improve-div' class="row center" style='display:none'>
-      <br><br>
+      <br><br>Showing word to word translation<br><br>
 	  Try translate 'Welcome to the new generation of club' or click improve translation
       <br><br>	  
 		<a href="index3.html" id="improve-button" class="btn-large waves-effect waves-light orange">Improve Translation</a>
@@ -142,11 +146,13 @@
   <script src="js/angular.min.js"></script>
   <script src="js/jquery.ui.touch-punch.min.js"></script>
   <script type="text/javascript" src="js/jquery.caret.1.02.js"></script>
-	<script src="manager.js"></script>
 <script>
 
 $(document).ready(function(){
-	$("#form").submit(function(){
+	$('#eText').focus();
+	$('#eText').val(" ");
+	$('#eTextL').addClass("active");
+	$("#sentForm").submit(function(){
 		translate();
 		event.preventDefault();
 	});
@@ -165,22 +171,28 @@ $(document).ready(function(){
 function translate(){
 eTextValue=document.getElementById("eText").value;
 	if(eTextValue=="")
-		return
+		return false;
 		
+	if($('#sentForm .progress').is(':visible'))
+		return false;
+		
+	$('#sentForm .progress').show();
 	$.post("http://translate-dhivehi.rhcloud.com/Translator/services/TranslatorS?wsdl/Translate",
 	{
 		eText: eTextValue
 	},
 	function(data){
 		var translation = data.childNodes[0].childNodes[0].data;
+		if(translation.indexOf('(Word to word translation)') > -1){
+			translation = translation.replace('(Word to word translation)', '');
+			$("#improve-div").show();
+		}else
+			$("#improve-div").hide();
 		dText.innerHTML = translation;
 		$("#dText").show();
-		if(translation.indexOf('(Word to word translation)') > -1)
-			$("#improve-div").show();
-		else
-			$("#improve-div").hide();
+		$('#sentForm .progress').hide();
 	});
-	return;
+	return false;
 }
 </script>
   </body>
