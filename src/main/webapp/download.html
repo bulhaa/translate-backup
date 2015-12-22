@@ -50,19 +50,6 @@
 	  <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
 	</div>
   </nav>
-  <div class="section no-pad-bot" id="index-banner">
-    <div class="container">
-      <!-- <br><br> -->
-      <!-- <h1 class="header center orange-text">Translate</h1> -->
-      <div class="row center">
-        <!-- <h5 class="header col s12 light">Modify dhivehi words and word types</h5> -->
-      </div>
-      <!-- <div class="row center">
-      </div> -->
-      <br><br>
-
-    </div>
-  </div>
 
 
   <div class="section no-pad-bot" id="Arrange-banner">
@@ -70,7 +57,7 @@
       <br><br>
       <h1 class="header center orange-text">Download Dictionary</h1>
       <div class="row center">
-        <h5 class="header col s12 light"></h5>
+        <h5 class="header col s12 light">Our dictionary has english word, dhivehi word and word type. Here is how to <a href='http://stackoverflow.com/questions/6002256/is-it-possible-to-force-excel-recognize-utf-8-csv-files-automatically' target="_blank">import</a> to Excel. Click <a onclick='downloadTypes()'>here</a> to download word type list.</h5>
       </div>
       <div class="row center">
       </div>
@@ -80,7 +67,7 @@
   
 	<div id='download-div' class="row center">
       <br>
-		<a id="download-button" class="btn-large waves-effect waves-light">Download</a>
+		<a id="download-button" class="btn-large waves-effect waves-light">Download Dictionary</a>
       <br><br>	
 	</div>
 
@@ -145,21 +132,13 @@
 				eText: "blank"
 			},
 			function(data){
-				// var data = [["name1", "city1", "some other info"], ["name2", "city2", "more info"]];
 				var csvContent = "data:text/csv;charset=utf-8,";
-				// data.childNodes[0].forEach(function(infoArray, index){
-
-				   // dataString = infoArray.join(",");
-				   // csvContent += index < data.length ? dataString+ "\n" : dataString;
-
-				// });
 				var d = data.childNodes[0].childNodes;
 				for(var a=0; a<d.length; a++){
 					csvContent += ''.concat(d[a].childNodes[0].childNodes[0].data, ', ', d[a].childNodes[1].childNodes[0].data, ', ', d[a].childNodes[2].childNodes[0].data, '\n');
 				}
 				
 				var encodedUri = encodeURI(csvContent);
-				<!-- window.open(encodedUri); -->
 				
 				var link = document.createElement("a");
 				link.setAttribute("href", encodedUri);
@@ -171,6 +150,19 @@
 			event.preventDefault();
 		});
 	});
+	
+	function downloadTypes(){
+		var csvContent = "data:text/csv;charset=utf-8,";
+			//csvContent += '"1", "h,r"\n"2", "t,r"\n';
+			csvContent += '"1","Coordinating conjunction"\n"2","Cardinal number"\n"3","Determiner"\n"4","Existential there"\n"5","Foreign word"\n"6","Preposition or subordinating conjunction"\n"7","Adjective"\n"8","Adjective,comparative"\n"9","Adjective,superlative"\n"10","List item marker"\n"11","Modal"\n"12","Noun,singular or mass"\n"13","Noun,plural"\n"14","Proper noun,singular"\n"15","Proper noun,plural"\n"16","Predeterminer"\n"17","Possessive ending"\n"18","Personal pronoun"\n"19","Possessive pronoun"\n"20","Adverb"\n"21","Adverb,comparative"\n"22","Adverb,superlative"\n"23","Particle"\n"24","Symbol"\n"25","to"\n"26","Interjection"\n"27","Verb,base form"\n"28","Verb,past tense"\n"29","Verb,gerund or present participle"\n"30","Verb,past participle"\n"31","Verb,non­3rd person singular present"\n"32","Verb,3rd person singular present"\n"33","Wh­determiner"\n"34","Wh­pronoun"\n"35","Possessive wh­pronoun"\n"36","Wh­adverb"\n';
+		
+		var encodedUri = encodeURI(csvContent);
+		var link = document.createElement("a");
+		link.setAttribute("href", encodedUri);
+		link.setAttribute("download", "wordTypes.csv");
+
+		link.click(); // This will download the data file named "my_data.csv".
+	}
 </script>
   </body>
 </html>
