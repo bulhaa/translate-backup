@@ -177,7 +177,7 @@ eTextValue=document.getElementById("eText").value;
 		return false;
 		
 	$('#sentForm .progress').show();
-	$.post("http://192.168.1.100:8080/Translator/services/TranslatorS?wsdl/Translate",
+	$.post("http://translate-dhivehi.rhcloud.com/Translator/services/TranslatorS?wsdl/Translate",
 	{
 		eText: eTextValue
 	},
