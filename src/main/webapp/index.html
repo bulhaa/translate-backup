@@ -1,14 +1,13 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="en">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-	<meta charset="UTF-8">
-	<meta name="description" content="Translate from English to Dhivehi">
-	<meta name="keywords" content="Dhivehi Maldives Maldivian Translate Language Translator Translating">
-	<meta name="author" content="Hammadh Abdul Rahman">
+  <meta charset="UTF-8">
+  <meta name="description" content="Translate from English to Dhivehi">
+  <meta name="keywords" content="Dhivehi Maldives Maldivian Translate Language Translator Translating">
+  <meta name="author" content="Hammadh Abdul Rahman">
   <title>English-Dhivehi Translator</title>
-	
   
 	<style type="text/css">
 @charset "utf-8";
@@ -182,7 +181,7 @@ eTextValue=document.getElementById("eText").value;
 		return false;
 		
 	$('#sentForm .progress').show();
-	$.post("http://192.168.1.100:8080/Translator/services/TranslatorS?wsdl/Translate",
+	$.post("http://translate-dhivehi.rhcloud.com/Translator/services/TranslatorS?wsdl/Translate",
 	{
 		eText: eTextValue
 	},
