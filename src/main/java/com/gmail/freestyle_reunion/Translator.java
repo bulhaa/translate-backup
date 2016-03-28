@@ -435,7 +435,7 @@ public class Translator {
 				
 				if(!lSc.hasNextInt())
 					continue;
-				
+				 
 				while(lSc.hasNextInt())
 					r.add(lSc.nextInt());
 				Integer[] rArr = r.toArray(new Integer[0]);
