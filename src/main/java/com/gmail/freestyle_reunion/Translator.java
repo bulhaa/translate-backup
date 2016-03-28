@@ -424,7 +424,7 @@ public class Translator {
 				Integer type = Integer.parseInt(sc.next());
 				definitions.put(eText+ type, new Definition(eText, dText, type));
 				wordToWord.put(eText, new Definition(eText, dText, type));
-			}
+			} 
 			
 			sc = new java.util.Scanner(RulesStr).useDelimiter("(\\r\\n|\\r|\\n)");
 			
