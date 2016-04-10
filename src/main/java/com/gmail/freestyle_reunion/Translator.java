@@ -130,7 +130,7 @@ public class Translator {
 //		String eText = "cat threw ball";
 		
 		System.out.println(translate(eText.split("\\s"), -1).translatedText);
-	} 
+	}
 	
 	
 	
