@@ -159,17 +159,17 @@ $(document).ready(function(){
 	$('#eText').val(" ");
 	$('#eTextL').addClass("active");
 	$("#sentForm").submit(function(event){
-		translate();
 		event.preventDefault();
-	});
-	$(".waves-input-wrapper").click(function(){
 		translate();
-//		event.preventDefault();
+	});
+	$(".waves-input-wrapper").click(function(event){
+		event.preventDefault();
+		translate();
 	});
 //	$("#submit").parent().click(function(){
 //		translate();
 //		event.preventDefault();
-//	}); 
+//	});
 });
 
 
