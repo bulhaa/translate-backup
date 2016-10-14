@@ -183,7 +183,7 @@ eTextValue=document.getElementById("eText").value;
 		return false;
 		
 	$('#sentForm .progress').show();
-	$.post("http://localhost:8080/Translator/services/TranslatorS?findRule",
+	$.post("http://translate-dhivehi.rhcloud.com/Translator/services/TranslatorS?findRule",
 	{
 		eText: eTextValue
 	},

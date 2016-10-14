@@ -40,7 +40,7 @@ var manager = angular.module('manager', [])
 	});
 	
 	
-	$("#getRule").click(function(){
+	$("#setRule").click(function(){
 		positions = $('.position');
 		var Order = "";
 		var Pattern = "";
@@ -71,6 +71,39 @@ var manager = angular.module('manager', [])
 		});
 	});
 
+	$("#setRuleWithAI").click(function(){
+		positions = $('.position');
+		var Order = "";
+		var Pattern = "";
+		// for(var a=positions.length-1; a>-1; a--){
+		for(var a=0; a<positions.length; a++){
+			// var d = 
+			Pattern += ''.concat(definitions.definition[a].type, ' ');
+			if($(positions[positions.length-a-1]).find('.draggable').length>0){
+				var i = $(positions[positions.length-a-1]).find('.draggable')[0].id;
+				i = i.replace('word', '');
+				i = positions.length-i;
+				//((int)i)+1
+				Order += ''.concat(i, ' ');
+			}
+			
+
+		}
+		
+		var ruleValue = Pattern.concat('0 ', Order);
+		eTextValue=$("#sent_eText").val();
+		$.post("http://translate-dhivehi.rhcloud.com/Translator/services/TranslatorS?wsdl/setRuleWithAIO",
+		{
+			rule: ruleValue,
+			definition: eTextValue
+		}
+		,
+		function(data){
+			$("#feedback").html(data.childNodes[0].childNodes[0].data);
+			$("#feedback").show();
+		});
+	});
+
 	$("#sentForm").submit(function(){
 		if($('#sentForm .progress').is(':visible'))
 			return false;
@@ -79,6 +112,7 @@ var manager = angular.module('manager', [])
 		$('#sentForm .progress').show();
 		$.post("http://translate-dhivehi.rhcloud.com/Translator/services/TranslatorS?wsdl/getDefinitionsO",
 		{
+			dText: eTextValue,
 			eText: eTextValue
 		}
 		,
@@ -123,7 +157,8 @@ var manager = angular.module('manager', [])
 				$('#form'+(a)).show();
 			}
 			$('.droppable').show();
-			$('#getRule').show();
+			$('#setRuleWithAI').show();
+			$('#setRule').show();
 			$( ".draggable" ).draggable({
 			  appendTo: "body",
 			  helper: "clone"
