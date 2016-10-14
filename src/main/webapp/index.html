@@ -195,9 +195,16 @@ eTextValue=document.getElementById("eText").value;
 		}else
 			$("#improve-div").hide();
 		dText.innerHTML = translation;
+		$("#dText").addClass('dText');
 		$("#dText").show();
 		$('#sentForm .progress').hide();
-	});
+	}).fail(function(xhr) {
+		$("#dText").removeClass('dText');
+		dText.innerHTML = "Error: Connection issue or server internal error @translate";
+		$("#dText").show();
+		$('#sentForm .progress').hide();
+		$("#improve-div").hide();
+  });
 
 	return false;
 }

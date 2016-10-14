@@ -33,9 +33,12 @@ var manager = angular.module('manager', [])
 		}
 		,
 		function(data){
-			$("#feedback").html(data.childNodes[0].childNodes[0].data);
-			$("#feedback").show();
-		});
+			$("#definitionFeedback").html(data.childNodes[0].childNodes[0].data);
+			$("#definitionFeedback").show();
+		}).fail(function(xhr) {
+			$("#definitionFeedback").html("Error: Connection issue or server internal error @SetDefinition");
+			$("#definitionFeedback").show();
+  });
 		return false;
 	});
 	
@@ -68,7 +71,10 @@ var manager = angular.module('manager', [])
 		function(data){
 			$("#feedback").html(data.childNodes[0].childNodes[0].data);
 			$("#feedback").show();
-		});
+		}).fail(function(xhr) {
+			$("#feedback").html("Error: Connection issue or server internal error @setRule");
+			$("#feedback").show();
+  });
 	});
 
 	$("#setRuleWithAI").click(function(){
@@ -101,7 +107,10 @@ var manager = angular.module('manager', [])
 		function(data){
 			$("#feedback").html(data.childNodes[0].childNodes[0].data);
 			$("#feedback").show();
-		});
+		}).fail(function(xhr) {
+			$("#feedback").html("Error: Connection issue or server internal error @setRuleWithAI");
+			$("#feedback").show();
+  });
 	});
 
 	$("#sentForm").submit(function(){
@@ -313,8 +322,13 @@ var manager = angular.module('manager', [])
 	// $(".dText").bind("change", function() {    
 		// $(this).value = $(this).value;
 	// });
+			$("#definitionFeedback").hide();
 
-		});
+		}).fail(function(xhr) {
+			$('#sentForm .progress').hide();
+			$("#definitionFeedback").html("Error: Connection issue or server internal error @getDefinitions");
+			$("#definitionFeedback").show();
+  });
 
 		return false;
 	});
