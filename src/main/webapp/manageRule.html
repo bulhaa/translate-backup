@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+	<meta charset="UTF-8">
+	<meta name="description" content="Translate from English to Dhivehi">
+	<meta name="keywords" content="Dhivehi Maldives Maldivian Translate Language Translator Translating">
+	<meta name="author" content="Hammadh Abdul Rahman">
+  <title>English-Dhivehi Translator</title>
+	
+  
+	<style type="text/css">
+@charset "utf-8";
+
+@font-face 		{ font-family: 'MV_Faseyha'; src:url('fonts/mv_faseyha.otf') format('opentype') }
+/* @font-face 		{ font-family: 'MV_Waheed'; src:url('fonts/mv_waheed.otf') format('opentype') } */
+	  html {
+    font-family: GillSans, Calibri;
+  }
+.dText {
+    font-family: MV_Faseyha;
+    font-size: 200%;
+/*	text-align: right;*/
+	direction: rtl;
+}
+    </style>
+	
+  <!-- CSS  -->
+  <link href="css/icon.css" rel="stylesheet">
+  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+	<link rel="stylesheet" href="jstree/dist/themes/default/style.min.css" />
+  <!-- <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/> -->
+  <!-- <link rel="stylesheet" href="css/jquery-ui.css"> -->
+<!-- 	<style type="text/css">
+ 
+  .draggable { width: 100px; height: 100px; padding: 0.5em; float: left; margin: 10px 10px 10px 0; }
+  .droppable { width: 150px; height: 150px; padding: 0.5em; float: left; margin: 10px; }
+	</style> -->
+</head>
+<body>
+  <nav class="light-blue lighten-1" role="navigation">
+    <div class="nav-wrapper container">
+	  <a id="logo-container" href="index.html" class="brand-logo">English-Dhivehi Translator</a>
+      <ul class="right hide-on-med-and-down">
+		<li class="active"><a href="index.html"><i class="material-icons">home</i></a></li>
+		<li><a href="manage.html"><i class="material-icons">edit</i></a></li>
+		<li><a href="download.html"><i class="material-icons">get_app</i></a></li>
+     </ul>
+
+      <ul id="nav-mobile" class="side-nav">
+		<li class="active"><a href="index.html"><i class="material-icons left">home</i>Home</a></li>
+		<li><a href="manage.html"><i class="material-icons left">edit</i>Manage</a></li>
+		<li><a href="download.html"><i class="material-icons left">get_app</i>Download</a></li>
+      </ul>
+	  <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+	</div>
+  </nav>
+  <div class="section no-pad-bot" id="index-banner">
+    <!--<div class="container" style="height: 50vh">-->
+    <div class="container">
+			<div id="tree">
+				<ul>
+					<li>Paragraph
+						<ul>
+							<li id="child_node_1">Sentence</li>
+							<li>Child node 2</li>
+						</ul>
+					</li>
+					<li>Root node 2</li>
+				</ul>
+			</div>
+			 		<input id='AddNode' class="btn waves-light" value="AddNode"></input>
+
+    </div>
+  </div>
+	
+
+
+	
+	<footer class="page-footer orange">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">About</h5>
+          <p class="grey-text text-lighten-4">We are a team of college students working on this project like it's our full time job. This project is too huge to accomplish on our own and we need your help to make this a success. Any help is greatly appreciated.</p>
+
+
+        </div>
+        <div class="col l3 s12">
+          <h5 class="white-text">Developers</h5>
+          <ul>
+            <li><a class="white-text" href="mailto:freestyle.reunion@gmail.com" target="_blank">Hammadh</a></li>
+            <li><a class="white-text" href="#!">Ashraq</a></li>
+            <li><a class="white-text" href="#!"></a></li>
+            <li><a class="white-text" href="#!"></a></li>
+          </ul>
+        </div>
+        <div class="col l3 s12">
+          <h5 class="white-text"></h5>
+          <ul>
+		<div id="pb-opennlp" class= "container l12 center">
+			<a href="https://opennlp.apache.org/" target="_blank"><img src="images/pb-opennlp.jpg" alt=""  class="circle responsive-img l12" height="300" width="300"></a>
+		</div>
+		<li><a class="white-text" href="#!"></a></li>
+            <li><a class="white-text" href="#!"></a></li>
+            <li><a class="white-text" href="#!"></a></li>
+            <li><a class="white-text" href="#!"></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+      Templates by <a class="orange-text text-lighten-3" href="http://materializecss.com" target="_blank">Materialize</a>
+      </div>
+    </div>
+  </footer>
+
+
+  <!--  Scripts-->
+  <script type="text/javascript" src="js/jquery.js"></script>
+  <script type="text/javascript">
+	var jQuery_1_4_2 = $;
+  </script>
+  <script src="js/jquery-2.1.1.min.js"></script>
+	<script src="jstree/dist/jstree.min.js"></script>
+	<script src="jstree/dist/jstree.min.js"></script>
+  <script type="text/javascript" src="js/jquery.soap.js"></script>
+  <script src="js/jquery-ui.js"></script>
+  <script src="../../bin/materialize.js"></script>
+  <script src="js/init.js"></script>
+  <!-- <script type="text/javascript" src="js/jtk-4.2.1.pack.js"></script> -->
+  <script src="js/angular.min.js"></script>
+  <script src="js/jquery.ui.touch-punch.min.js"></script>
+  <script type="text/javascript" src="js/jquery.caret.1.02.js"></script>
+<script>
+
+$(document).ready(function(){
+$("#tree").on('changed.jstree', function (e, data) {
+    var i, j, r = [];
+    for(i = 0, j = data.selected.length; i < j; i++) {
+      //r.push(data.instance.get_node(data.selected[i]).text);
+			//$('#tree').jstree(true).create_node(data.instance.get_node(data.selected[i]).id, newNode);
+
+			var node =data.instance.get_node(data.selected[i]);
+			if(node.data=="type" && node.text<0){
+				
+				var children = $('#tree').jstree(true).get_children_dom (node);
+				
+				for(var a=0; a<children.length; a++){
+					$('#tree').jstree(true).delete_node(children[a]);
+				}
+				
+				/*if($('#tree').jstree(true).get_children_dom (node).length>0){
+					var parent = node.parent;
+					$('#tree').jstree(true).delete_node (node.id);
+					
+					var newNode = { text: text, data: "type", state: "open", "icon" : "images/tree-icon.png" };
+					var node = $('#tree').jstree(true).create_node(parent, newNode);
+				}else*/
+					loadRule(node.text, node);
+				
+			}else if(node.text=="Root" && $('#tree').jstree(true).get_children_dom (1).length==0)
+				loadRule(-1, 1);
+			//else if(node.data="
+    }
+    $('#event_result').html('Selected: ' + r.join(', '));
+  }).jstree({
+		'core' : {
+				'check_callback' : true,
+				//'data': [{ 'id' : '1', 'text' : 'Root', 'state' : {'opened':true}, 'children' : ['sentence', 'child 2']}]
+				'data': [{ 'id' : '1', 'text' : 'Root', data: "type", 'state' : {'opened':true}, "icon" : "images/tree-icon.png"}]
+		},
+    "checkbox": {
+			"keep_selected_style": true
+		},
+		"plugins" : [ "contextmenu","wholerow","types","dnd","state" ]
+	});
+		loadRule(-1, 1);
+
+/*$(function () { $root = $('#jstree_demo_div').jstree(
+    'core' : {
+        'data' : {
+        'url' : 'info.json',
+        'data' : function (node) {
+            return { 'id' : node.id };
+        },
+        check_callback : true;
+			}
+		}
+	); });*/
+//var position = 'inside';
+//var parent = '#child_node_1';
+//var newNode = { state: "open", data: "New nooooode!" };
+});
+
+	$("#AddNode").click(function(event){
+	
+		
+		/*var obj = {"id" : "1", "text" : "Root", "state" : {"opened":true}, "children" : ["child 1", "child 2"]};
+		var newNode = { state: "open", data: "New nooooode!" };
+		$('#tree').jstree(true).create_node('1', newNode);*/
+	});
+	
+	function loadRule(type, nodeID){
+
+		$.post("http://translate-dhivehi.rhcloud.com/Translator/services/TranslatorS?getRules",
+		{
+			eText: type
+		},
+		function(data){
+			var rules = data.childNodes[0].childNodes;
+			
+			for(var a=0;a<rules.length/2;a++){
+				//var newNode = { id: rules[a].childNodes[0].data, text: rules[rules.length/2+a].childNodes[0].data, data: "rule", state: "open" };
+				var newNode = { text: rules[rules.length/2+a].childNodes[0].data, data: "rule", state: "open" };
+				var rule = $('#tree').jstree(true).create_node(nodeID, newNode);
+				//rule=rules[a].childNodes[0].data;
+				
+				var types = rules[rules.length/2+a].childNodes[0].data.split(", ");
+				
+				for(var b=0;b<types.length;b++){
+					var newNode = { text: types[b], data: "type", state: "open", "icon" : "images/tree-icon.png" };
+					$('#tree').jstree(true).create_node(rule, newNode);
+				}
+			}
+		}).fail(function() {
+		});	
+	}
+
+</script>
+  </body>
+</html>
