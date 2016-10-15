@@ -56,27 +56,76 @@
 	  <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
 	</div>
   </nav>
+	
+  <div class="section no-pad-bot" id="index-banner">
+    <div class="container">
+      <br><br>
+      <h1 class="header center orange-text">Rule Tree</h1>
+      <div class="row center">
+        <h5 class="header col s12 light"></h5>
+      </div>
+      <div class="row center">
+      </div>
+      <!-- <br><br> -->
+    </div>
+  </div>
+	
   <div class="section no-pad-bot" id="index-banner">
     <!--<div class="container" style="height: 50vh">-->
     <div class="container">
 			<div id="tree">
 				<ul>
-					<li>Paragraph
-						<ul>
-							<li id="child_node_1">Sentence</li>
-							<li>Child node 2</li>
-						</ul>
-					</li>
-					<li>Root node 2</li>
+					<li>Root</li>
 				</ul>
 			</div>
-			 		<input id='AddNode' class="btn waves-light" value="AddNode"></input>
 
     </div>
   </div>
 	
+  <!-- <div class="section no-pad-bot" id="index-banner">
+    <div class="container">
+      <br><br>
+      <h1 class="header center orange-text">Edit Rule</h1>
+      <div class="row center">
+        <h5 class="header col s12 light"></h5>
+      </div>
+      <div class="row center">
+      </div>
+      <br><br>
+    </div>
+  </div> -->
 
-
+  <div class="section no-pad-bot" id="index-banner">
+    <!--<div class="container" style="height: 50vh">-->
+    <div class="container">
+			<form class="" id="ruleForm" method="post" align = "center" action="">
+				<div class="input-field">
+					<input id="rule_Type" type="text" class="validate">
+					<label id="rule_TypeL" for="rule_type">Type</label>
+				</div>
+				<div class="input-field">
+					<input id="rule_Precedence" type="text" class="validate">
+					<label id="rule_PrecedenceL" for="rule_Precedence">Precedence</label>
+				</div>
+				<div class="input-field">
+					<input id="rule_Pattern" type="text" class="validate">
+					<label id="rule_PatternL" for="rule_Pattern">Pattern</label>
+				</div>
+				<div class="input-field">
+					<input id="rule_Order" type="text" class="validate">
+					<label id="rule_OrderL" for="rule_Order">Order</label>
+				</div>
+				<div class="input-field">
+					<input id="rule_Transformations" type="text" class="validate">
+					<label id="rule_TransformationsL" for="rule_Transformations">Transformations</label>
+				</div>
+				<input class="waves-effect waves-light btn" type="submit" value="Update Rule"></input>
+				<div class="progress" style="display:none">
+					<div class="indeterminate"></div>
+				</div>
+			</form>
+    </div>
+  </div>
 	
 	<footer class="page-footer orange">
     <div class="container">
@@ -135,7 +184,64 @@
   <script type="text/javascript" src="js/jquery.caret.1.02.js"></script>
 <script>
 
+var firebaseID;
+
 $(document).ready(function(){
+
+	$("#ruleForm").submit(function(event){
+		event.preventDefault();
+		updateRule();
+	});
+	$(".waves-input-wrapper").click(function(event){
+		event.preventDefault();
+		updateRule();
+	});
+
+function updateRule(){
+	var rule='';
+	rule = rule.concat($('#rule_Type').val(),',');
+	rule = rule.concat($('#rule_Precedence').val(),',');
+	rule = rule.concat($('#rule_Pattern').val(),',0,');
+	rule = rule.concat($('#rule_Order').val(),',0,');
+	if($('#rule_Transformations').val()!='')
+		rule = rule.concat($('#rule_Transformations').val(),',');
+		
+	rule=rule.substring(0,rule.length-1);
+	
+	if($('#rule_Type').val()=="")
+		return false;
+		
+	if($('#ruleForm .progress').is(':visible'))
+		return false;
+		
+	$('#sentForm .progress').show();
+	$.post("http://translate-dhivehi.rhcloud.com/Translator/services/TranslatorS?setRuleAdvanced",
+	{
+		key: firebaseID,
+		rule: rule
+	},
+	function(data){
+		/*var translation = data.childNodes[0].childNodes[0].data;
+		if(translation.indexOf('(Word to word translation)') > -1){
+			translation = translation.replace('(Word to word translation)', '');
+			$("#improve-div").show();
+		}else
+			$("#improve-div").hide();
+		dText.innerHTML = translation;
+		$("#dText").addClass('dText');
+		$("#dText").show();
+		$('#sentForm .progress').hide();*/
+	}).fail(function(xhr) {
+		/*$("#dText").removeClass('dText');
+		dText.innerHTML = "Error: Connection issue or server internal error @translate";
+		$("#dText").show();
+		$('#sentForm .progress').hide();
+		$("#improve-div").hide();*/
+  });
+
+	return false;
+}
+
 $("#tree").on('changed.jstree', function (e, data) {
     var i, j, r = [];
     for(i = 0, j = data.selected.length; i < j; i++) {
@@ -151,6 +257,7 @@ $("#tree").on('changed.jstree', function (e, data) {
 					$('#tree').jstree(true).delete_node(children[a]);
 				}
 				
+				
 				/*if($('#tree').jstree(true).get_children_dom (node).length>0){
 					var parent = node.parent;
 					$('#tree').jstree(true).delete_node (node.id);
@@ -162,6 +269,65 @@ $("#tree").on('changed.jstree', function (e, data) {
 				
 			}else if(node.text=="Root" && $('#tree').jstree(true).get_children_dom (1).length==0)
 				loadRule(-1, 1);
+			else{
+				firebaseID=node.data;
+				$.post("http://translate-dhivehi.rhcloud.com/Translator/services/TranslatorS?getRule",
+				{
+					eText: node.data
+				},
+				function(data){
+					var rule = data.childNodes[0].childNodes[0].data.replace("[","");
+					rule = rule.replace("]","");
+					rule = rule.split(", ");
+					
+					setText("#rule_Type", rule[0]);
+					setText("#rule_Precedence", rule[1]);
+					
+					var stage = 1;
+					var pattern = "";
+					var order = "";
+					var transformations = "";
+
+					// seperate patter, order and transformation
+					for (var i = 2; i < rule.length; i++) {
+						if (rule[i] == 0) {
+							stage++;
+						} else if (stage == 1) {
+							pattern = pattern.concat(rule[i],",");
+						} else if (stage == 2) {
+							order = order.concat(rule[i],",");
+						} else {
+							transformations = transformations.concat(rule[i],",");
+						}
+					}
+					
+					setText("#rule_Pattern", pattern.substring(0,pattern.length-1));
+					setText("#rule_Order", order.substring(0,order.length-1));
+					setText("#rule_Transformations", transformations.substring(0,transformations.length-1));
+
+					/*var pattern = [];
+					for (var i = 2; i < 2 + pattern.length; i++) {
+						pattern[i - 2] = rule[i];
+					}
+
+					var order = [];
+					for (var i = 2 + patternLen + 1; i < 2 + patternLen + 1 + orderLen; i++) {
+						order[i - 2 - patternLen - 1] = rule[i];
+					}
+
+					transformations = new NanoRule[ruleLen / 2];
+					for (var i = 2 + patternLen + 1 + orderLen + 1; i < rule.length; i += 2) {
+						transformations[(i - 2 - patternLen - 1 - orderLen - 1)/2] = new NanoRule(rule[i], rule[i + 1]);
+					}*/
+					var test = "tet";
+					
+					
+				}).fail(function() {
+				});	
+			}
+			
+				
+				
 			//else if(node.data="
     }
     $('#event_result').html('Selected: ' + r.join(', '));
@@ -202,6 +368,12 @@ $("#tree").on('changed.jstree', function (e, data) {
 		$('#tree').jstree(true).create_node('1', newNode);*/
 	});
 	
+	function setText(control, text){
+		$(control).val(text);
+		$(control).addClass("valid");
+		$(control.concat('L')).addClass("active");
+	}
+	
 	function loadRule(type, nodeID){
 
 		$.post("http://translate-dhivehi.rhcloud.com/Translator/services/TranslatorS?getRules",
@@ -213,7 +385,7 @@ $("#tree").on('changed.jstree', function (e, data) {
 			
 			for(var a=0;a<rules.length/2;a++){
 				//var newNode = { id: rules[a].childNodes[0].data, text: rules[rules.length/2+a].childNodes[0].data, data: "rule", state: "open" };
-				var newNode = { text: rules[rules.length/2+a].childNodes[0].data, data: "rule", state: "open" };
+				var newNode = { text: rules[rules.length/2+a].childNodes[0].data, data: rules[a].childNodes[0].data, state: "open" };
 				var rule = $('#tree').jstree(true).create_node(nodeID, newNode);
 				//rule=rules[a].childNodes[0].data;
 				
@@ -224,9 +396,13 @@ $("#tree").on('changed.jstree', function (e, data) {
 					$('#tree').jstree(true).create_node(rule, newNode);
 				}
 			}
+			
+			$('#tree').jstree(true).open_node(nodeID);
+
 		}).fail(function() {
 		});	
 	}
+	
 
 </script>
   </body>
