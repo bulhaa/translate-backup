@@ -77,8 +77,8 @@
 				<ul>
 					<li>Root</li>
 				</ul>
-			</div>
-
+			</div><br>
+		<div id="treeFeedback" class= "#ef9a9a red lighten-3" style="display:none"></div>
     </div>
   </div>
 	
@@ -98,21 +98,21 @@
   <div class="section no-pad-bot" id="index-banner">
     <!--<div class="container" style="height: 50vh">-->
     <div class="container">
-			<form class="" id="ruleForm" method="post" align = "center" action="">
+			<form class="" id="ruleForm" method="post" align = "center" action="" style="display:none">
 				<div class="input-field">
-					<input id="rule_Type" type="text" class="validate">
+					<input id="rule_Type" type="number" class="validate" required>
 					<label id="rule_TypeL" for="rule_type">Type</label>
 				</div>
 				<div class="input-field">
-					<input id="rule_Precedence" type="text" class="validate">
+					<input id="rule_Precedence" type="number" class="validate" required>
 					<label id="rule_PrecedenceL" for="rule_Precedence">Precedence</label>
 				</div>
 				<div class="input-field">
-					<input id="rule_Pattern" type="text" class="validate">
+					<input id="rule_Pattern" type="text" class="validate" required>
 					<label id="rule_PatternL" for="rule_Pattern">Pattern</label>
 				</div>
 				<div class="input-field">
-					<input id="rule_Order" type="text" class="validate">
+					<input id="rule_Order" type="text" class="validate" required>
 					<label id="rule_OrderL" for="rule_Order">Order</label>
 				</div>
 				<div class="input-field">
@@ -124,8 +124,12 @@
 					<div class="indeterminate"></div>
 				</div>
 			</form>
+				<br>
+		<div id="ruleFeedback" class= "#ef9a9a red lighten-3" style="display:none"></div>
     </div>
   </div>
+	
+
 	
 	<footer class="page-footer orange">
     <div class="container">
@@ -221,7 +225,7 @@ function updateRule(){
 		rule: rule
 	},
 	function(data){
-		/*var translation = data.childNodes[0].childNodes[0].data;
+		/*var feedback = data.childNodes[0].childNodes[0].data;
 		if(translation.indexOf('(Word to word translation)') > -1){
 			translation = translation.replace('(Word to word translation)', '');
 			$("#improve-div").show();
@@ -231,12 +235,12 @@ function updateRule(){
 		$("#dText").addClass('dText');
 		$("#dText").show();
 		$('#sentForm .progress').hide();*/
+		$("#ruleFeedback").html("Rule added");
+		$("#ruleFeedback").show();
 	}).fail(function(xhr) {
-		/*$("#dText").removeClass('dText');
-		dText.innerHTML = "Error: Connection issue or server internal error @translate";
-		$("#dText").show();
-		$('#sentForm .progress').hide();
-		$("#improve-div").hide();*/
+		$("#ruleFeedback").html("Error: Connection issue or server internal error @SetRuleAdvanced");
+		$("#ruleFeedback").show();
+
   });
 
 	return false;
@@ -249,8 +253,10 @@ $("#tree").on('changed.jstree', function (e, data) {
 			//$('#tree').jstree(true).create_node(data.instance.get_node(data.selected[i]).id, newNode);
 
 			var node =data.instance.get_node(data.selected[i]);
-			if(node.data=="type" && node.text<0){
+			//if(node.data=="type" && node.text<0){
+			if(node.data=="type"){
 				
+				$('#tree').jstree(true).open_node(node);
 				var children = $('#tree').jstree(true).get_children_dom (node);
 				
 				for(var a=0; a<children.length; a++){
@@ -265,11 +271,15 @@ $("#tree").on('changed.jstree', function (e, data) {
 					var newNode = { text: text, data: "type", state: "open", "icon" : "images/tree-icon.png" };
 					var node = $('#tree').jstree(true).create_node(parent, newNode);
 				}else*/
+				
+				//if(node.text=="Root" && $('#tree').jstree(true).get_children_dom (1).length==0)
+				if(node.text=="Root")
+					loadRule(-1, 1);
+				else
 					loadRule(node.text, node);
 				
-			}else if(node.text=="Root" && $('#tree').jstree(true).get_children_dom (1).length==0)
-				loadRule(-1, 1);
-			else{
+
+			}else{
 				firebaseID=node.data;
 				$.post("http://translate-dhivehi.rhcloud.com/Translator/services/TranslatorS?getRule",
 				{
@@ -319,10 +329,14 @@ $("#tree").on('changed.jstree', function (e, data) {
 					for (var i = 2 + patternLen + 1 + orderLen + 1; i < rule.length; i += 2) {
 						transformations[(i - 2 - patternLen - 1 - orderLen - 1)/2] = new NanoRule(rule[i], rule[i + 1]);
 					}*/
-					var test = "tet";
 					
-					
+					$('#tree').jstree(true).open_node(node);
+
+					$("#ruleForm").show();
+					$("#treeFeedback").hide();
 				}).fail(function() {
+					$("#treeFeedback").html("Error: Connection issue or server internal error @GetRule->LoadRule");
+					$("#treeFeedback").show();
 				});	
 			}
 			
@@ -398,8 +412,10 @@ $("#tree").on('changed.jstree', function (e, data) {
 			}
 			
 			$('#tree').jstree(true).open_node(nodeID);
-
+			$("#treeFeedback").hide();
 		}).fail(function() {
+			$("#treeFeedback").html("Error: Connection issue or server internal error @GetRule->LoadTree");
+			$("#treeFeedback").show();
 		});	
 	}
 	
