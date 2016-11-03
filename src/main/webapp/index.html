@@ -11,45 +11,22 @@
     <title>English-Dhivehi Translator</title>
 
 
-    <style type="text/css">
-        @charset "utf-8";
-        @font-face {
-            font-family: 'MV_Faseyha';
-            src: url('fonts/mv_faseyha.otf') format('opentype')
-        }
-        /* @font-face 		{ font-family: 'MV_Waheed'; src:url('fonts/mv_waheed.otf') format('opentype') } */
-        
-        html {
-            font-family: GillSans, Calibri;
-        }
-        
-        .dText {
-            font-family: MV_Faseyha;
-            font-size: 200%;
-            /*	text-align: right;*/
-            direction: rtl;
-        }
-    </style>
 
     <!-- CSS  -->
+    <link href="css/compressed.css" rel="stylesheet">
+    <!--<link rel="stylesheet" href="css/jquery-ui.css">
     <link href="css/icon.css" rel="stylesheet">
-    <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
-    <!-- <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/> -->
-    <!-- <link rel="stylesheet" href="css/jquery-ui.css"> -->
-    <!-- 	<style type="text/css">
- 
-  .draggable { width: 100px; height: 100px; padding: 0.5em; float: left; margin: 10px 10px 10px 0; }
-  .droppable { width: 150px; height: 150px; padding: 0.5em; float: left; margin: 10px; }
-	</style> -->
+    <link href="css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection" />
+    <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>-->
 </head>
 
 <body>
     <nav class="light-blue lighten-1" role="navigation">
         <div class="nav-wrapper container">
             <a id="logo-container" href="index.html" class="brand-logo">
-							<div class="hide-on-small-only" >English-Dhivehi Translator</div>
-							<div class="hide-on-med-and-up" >Translator</div>
-			</a>
+							<span class="hide-on-small-only" >English-Dhivehi Translator</span>
+							<span class="hide-on-med-and-up" >Translator</span>
+						</a>
             <ul class="right hide-on-med-and-down">
                 <li class="active"><a href="index.html"><i class="material-icons">home</i></a></li>
                 <li><a href="manage.html"><i class="material-icons">edit</i></a></li>
@@ -74,7 +51,9 @@
                 <input id="eText" type="text" class="validate">
                 <label id="eTextL" for="eText">Enter english text</label>
             </div>
-            <input id='submit' class="btn waves-light" type="submit" value="Translate"></input>
+						<button id='submit' class="btn waves-effect waves-light" type="submit" name="action">Translate
+								<i class="material-icons right">send</i>
+						</button>
             <div class="progress" style="display:none">
                 <div class="indeterminate"></div>
             </div>
@@ -106,14 +85,8 @@
                 <div class="col l3 s12">
                     <h5 class="white-text">Developers</h5>
                     <ul>
-                        <li><a class="white-text" href="mailto:freestyle.reunion@gmail.com" target="_blank">Hammadh</a></li>
-                        <li><a class="white-text" href="#!">Ashraq</a></li>
-                        <li>
-                            <a class="white-text" href="#!"></a>
-                        </li>
-                        <li>
-                            <a class="white-text" href="#!"></a>
-                        </li>
+                        <li><a class="white-text" href="mailto:admin@translate.33mail.com" target="_blank">Hammadh</a></li>
+                        <li><a class="white-text">Ashraq</a></li>
                     </ul>
                 </div>
                 <div class="col l3 s12">
@@ -122,18 +95,6 @@
                         <div id="pb-opennlp" class="container l12 center">
                             <a href="https://opennlp.apache.org/" target="_blank"><img src="images/pb-opennlp.jpg" alt="Apache OpenNLP Logo" class="circle responsive-img l12" height="300" width="300"></a>
                         </div>
-                        <li>
-                            <a class="white-text" href="#!"></a>
-                        </li>
-                        <li>
-                            <a class="white-text" href="#!"></a>
-                        </li>
-                        <li>
-                            <a class="white-text" href="#!"></a>
-                        </li>
-                        <li>
-                            <a class="white-text" href="#!"></a>
-                        </li>
                     </ul>
                 </div>
             </div>
@@ -147,21 +108,23 @@
 
 
     <!--  Scripts-->
-    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/compressed.js"></script>
+
+		<!--
+    <script type="text/javascript" src="js/jquery-1.4.2.js"></script>
     <script type="text/javascript">
         var jQuery_1_4_2 = $;
     </script>
     <script src="js/jquery-2.1.1.min.js"></script>
-    <!--<script type="text/javascript" src="js/jquery.soap.js"></script>-->
     <script src="js/jquery-ui.js"></script>
-    <script src="../../bin/materialize.js"></script>
+    <script src="js/materialize.js"></script>
     <script src="js/init.js"></script>
-    <!-- <script type="text/javascript" src="js/jtk-4.2.1.pack.js"></script> -->
     <script src="js/angular.min.js"></script>
     <script src="js/google-analytics.js"></script>
     <script src="js/jquery.ui.touch-punch.min.js"></script>
     <script type="text/javascript" src="js/jquery.caret.1.02.js"></script>
-    <script>
+			-->
+    <script defer>
         $(document).ready(function() {
             $('#eText').focus();
             $('#eText').val(" ");
@@ -174,10 +137,6 @@
                 event.preventDefault();
                 translate();
             });
-            //	$("#submit").parent().click(function(){
-            //		translate();
-            //		event.preventDefault();
-            //	});
         });
 
 
@@ -191,7 +150,7 @@
                 return false;
 
             $('#sentForm .progress').show();
-            $.post("translate-dhivehi.rhcloud.com/Translator/services/TranslatorS?Translate", {
+            $.post("https://translate-dhivehi.rhcloud.com/Translator/services/TranslatorS?Translate", {
                     eText: eTextValue
                 },
                 function(data) {

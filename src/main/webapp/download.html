@@ -57,7 +57,7 @@
       <br><br>
       <h1 class="header center orange-text">Download Dictionary</h1>
       <div class="row center">
-        <h5 class="header col s12 light">Our dictionary has english word, dhivehi word and word type. Here is how to <a href='http://stackoverflow.com/questions/6002256/is-it-possible-to-force-excel-recognize-utf-8-csv-files-automatically' target="_blank">import</a> to Excel. Click <a onclick='downloadTypes()'>here</a> to download word type list.</h5>
+        <h5 class="header col s12 light">Our dictionary has english word, dhivehi word and word type. Here is how to <a href='http://stackoverflow.com/questions/6002256/is-it-possible-to-force-excel-recognize-utf-8-csv-files-automatically' target="_blank">import</a> to Excel. Click <a href='#' onclick='downloadTypes()'>here</a> to download word type list.</h5>
       </div>
       <div class="row center">
       </div>
@@ -120,14 +120,13 @@
   <script src="js/jquery-ui.js"></script>
   <script src="../../bin/materialize.js"></script>
   <script src="js/init.js"></script>
-  <script type="text/javascript" src="js/jtk-4.2.1.pack.js"></script>
   <script src="js/angular.min.js"></script>
   <script src="js/jquery.ui.touch-punch.min.js"></script>
   <script type="text/javascript" src="js/jquery.caret.1.02.js"></script>
 <script>
 	$(document).ready(function(){
 		$("#download-button").click(function(){
-			$.post("http://translate-dhivehi.rhcloud.com/Translator/services/TranslatorS?wsdl/getDictionaryO",
+			$.post("https://translate-dhivehi.rhcloud.com/Translator/services/TranslatorS?wsdl/getDictionaryO",
 			{
 				eText: "blank"
 			},

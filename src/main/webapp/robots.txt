@@ -1,1 +1,3 @@
-Sitemap: http://example.com/sitemap.xml
+User-agent: *
+Disallow: /Translator/
+Sitemap: https://translate-dhivehi.rhcloud.com:8443/sitemap.xml
