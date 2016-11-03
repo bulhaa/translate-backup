@@ -16,7 +16,7 @@
 @font-face 		{ font-family: 'MV_Faseyha'; src:url('fonts/mv_faseyha.otf') format('opentype') }
 /* @font-face 		{ font-family: 'MV_Waheed'; src:url('fonts/mv_waheed.otf') format('opentype') } */
 	  html {
-    font-family: GillSans, Calibri; 
+    font-family: GillSans, Calibri;
   }
 .dText {
     font-family: MV_Faseyha;
@@ -120,7 +120,7 @@
           <h5 class="white-text"></h5>
           <ul>
 		<div id="pb-opennlp" class= "container l12 center">
-			<a href="https://opennlp.apache.org/" target="_blank"><img src="images/pb-opennlp.jpg" alt=""  class="circle responsive-img l12" height="300" width="300"></a>
+			<a href="https://opennlp.apache.org/" target="_blank"><img src="images/pb-opennlp.jpg" alt="Apache OpenNLP Logo"  class="circle responsive-img l12" height="300" width="300"></a>
 		</div>
 		<li><a class="white-text" href="#!"></a></li>
             <li><a class="white-text" href="#!"></a></li>
@@ -150,6 +150,7 @@
   <script src="js/init.js"></script>
   <!-- <script type="text/javascript" src="js/jtk-4.2.1.pack.js"></script> -->
   <script src="js/angular.min.js"></script>
+  <script src="js/google-analytics.js"></script>
   <script src="js/jquery.ui.touch-punch.min.js"></script>
   <script type="text/javascript" src="js/jquery.caret.1.02.js"></script>
 <script>
@@ -183,7 +184,7 @@ eTextValue=document.getElementById("eText").value;
 		return false;
 		
 	$('#sentForm .progress').show();
-	$.post("http://translate-dhivehi.rhcloud.com/Translator/services/TranslatorS?Translate",
+	$.post("translate-dhivehi.rhcloud.com/Translator/services/TranslatorS?Translate",
 	{
 		eText: eTextValue
 	},

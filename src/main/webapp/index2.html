@@ -13,14 +13,14 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
 
   <!-- Compiled and minified JavaScript -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
 <script>
 
 $(document).ready(function(){
 	$("#form").submit(function(){
 	eTextValue=document.getElementById("eText").value;
-		$.post("http://translate-dhivehi.rhcloud.com/Translator2/services/Translate?wsdl/Translate",
+		$.post("translate-dhivehi.rhcloud.com/Translator/services/Translate?wsdl/Translate",
 		{
 			eText: eTextValue
 		},
@@ -39,7 +39,7 @@ $(document).ready(function(){
 		<h1 >Translator</h1>
 	</div>
 <div class="container" allign = "center">
-	<form id="form" method="post" align = "center" action="http://translat-dhivehi.rhcloud.com/Translator/services/Translate?wsdl/Translate">
+	<form id="form" method="post" align = "center" action="http://translate-dhivehi.rhcloud.com/Translator/services/Translate?wsdl/Translate">
 		<input id="eText" type = "text" align="center" placeholder="enter text" name="eText"></input>
  		<input class="waves-effect waves-light btn-large" type="submit" value="Translate"></input>
 	</form>
