@@ -25,7 +25,7 @@ var manager = angular.module('manager', [])
 		eTextValue=$form[0][0].value;
 		dTextValue=$form[0][1].value;
 		typeValue=$form[0][3].value;
-		$.post("http://translate-dhivehi.rhcloud.com/Translator/services/TranslatorS?wsdl/SetDefinitionO",
+		$.post("https://translate-dhivehi.rhcloud.com/Translator/services/TranslatorS?wsdl/SetDefinitionO",
 		{
 			eText: eTextValue,
 			dText: dTextValue,
@@ -63,7 +63,7 @@ var manager = angular.module('manager', [])
 		}
 		
 		var ruleValue = Pattern.concat('0 ', Order);
-		$.post("http://translate-dhivehi.rhcloud.com/Translator/services/TranslatorS?wsdl/setRuleO",
+		$.post("https://translate-dhivehi.rhcloud.com/Translator/services/TranslatorS?wsdl/setRuleO",
 		{
 			eText: ruleValue
 		}
@@ -98,7 +98,7 @@ var manager = angular.module('manager', [])
 		
 		var ruleValue = Pattern.concat('0 ', Order);
 		eTextValue=$("#sent_eText").val();
-		$.post("http://translate-dhivehi.rhcloud.com/Translator/services/TranslatorS?wsdl/setRuleWithAIO",
+		$.post("https://translate-dhivehi.rhcloud.com/Translator/services/TranslatorS?wsdl/setRuleWithAIO",
 		{
 			rule: ruleValue,
 			definition: eTextValue
@@ -119,9 +119,9 @@ var manager = angular.module('manager', [])
 		
 	eTextValue=$("#sent_eText").val();
 		$('#sentForm .progress').show();
-		$.post("http://translate-dhivehi.rhcloud.com/Translator/services/TranslatorS?wsdl/getDefinitionsO",
+		$.post("https://translate-dhivehi.rhcloud.com/Translator/services/TranslatorS?wsdl/getDefinitionsO",
 		{
-			dText: eTextValue, 
+			dText: eTextValue,
 			eText: eTextValue
 		}
 		,
