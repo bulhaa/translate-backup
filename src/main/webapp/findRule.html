@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -41,17 +41,19 @@
   <nav class="light-blue lighten-1" role="navigation">
     <div class="nav-wrapper container">
 	  <a id="logo-container" href="index.html" class="brand-logo">English-Dhivehi Translator</a>
-      <ul class="right hide-on-med-and-down">
-		<li class="active"><a href="index.html"><i class="material-icons">home</i></a></li>
-		<li><a href="manage.html"><i class="material-icons">edit</i></a></li>
-		<li><a href="download.html"><i class="material-icons">get_app</i></a></li>
-     </ul>
+            <ul class="right hide-on-med-and-down">
+                <li><a href="index.html"><i class="material-icons">home</i></a></li>
+                <li><a href="manage.html"><i class="material-icons">library_add</i></a></li>
+                <li><a href="download.html"><i class="material-icons">get_app</i></a></li>
+                <li><a href="help.html"><i class="material-icons">live_help</i></a></li>
+            </ul>
 
-      <ul id="nav-mobile" class="side-nav">
-		<li class="active"><a href="index.html"><i class="material-icons left">home</i>Home</a></li>
-		<li><a href="manage.html"><i class="material-icons left">edit</i>Manage</a></li>
-		<li><a href="download.html"><i class="material-icons left">get_app</i>Download</a></li>
-      </ul>
+            <ul id="nav-mobile" class="side-nav">
+                <li><a href="index.html"><i class="material-icons left">home</i>Home</a></li>
+                <li><a href="manage.html"><i class="material-icons left">library_add</i>Manage</a></li>
+                <li><a href="download.html"><i class="material-icons left">get_app</i>Download</a></li>
+                <li><a href="help.html"><i class="material-icons left">live_help</i>Help</a></li>
+            </ul>
 	  <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
 	</div>
   </nav>
@@ -98,44 +100,38 @@
 	</div>
   </div>
 	
-	<footer class="page-footer orange">
-    <div class="container">
-      <div class="row">
-        <div class="col l6 s12">
-          <h5 class="white-text">About</h5>
-          <p class="grey-text text-lighten-4">We are a team of college students working on this project like it's our full time job. This project is too huge to accomplish on our own and we need your help to make this a success. Any help is greatly appreciated.</p>
+    <footer class="page-footer orange">
+        <div class="container">
+            <div class="row">
+                <div class="col l6 s12">
+                    <h5 class="white-text">About</h5>
+                    <p class="grey-text text-lighten-4">We are a team of college students working on this project like it's our full time job. This project is too huge to accomplish on our own and we need your help to make this a success. Any help is greatly appreciated.</p>
 
 
+                </div>
+                <div class="col l3 s12">
+                    <h5 class="white-text">Developers</h5>
+                    <ul>
+                        <li><a class="white-text" href="mailto:admin@translate.33mail.com" target="_blank">Hammadh</a></li>
+                        <li><a class="white-text">Ashraq</a></li>
+                    </ul>
+                </div>
+                <div class="col l3 s12">
+                    <h5 class="white-text"></h5>
+                    <ul>
+                        <div id="pb-opennlp" class="container l12 center">
+                            <a href="https://opennlp.apache.org/" target="_blank"><img src="images/pb-opennlp.jpg" alt="Apache OpenNLP Logo" class="circle responsive-img l12" height="300" width="300"></a>
+                        </div>
+                    </ul>
+                </div>
+            </div>
         </div>
-        <div class="col l3 s12">
-          <h5 class="white-text">Developers</h5>
-          <ul>
-            <li><a class="white-text" href="mailto:freestyle.reunion@gmail.com" target="_blank">Hammadh</a></li>
-            <li><a class="white-text" href="#!">Ashraq</a></li>
-            <li><a class="white-text" href="#!"></a></li>
-            <li><a class="white-text" href="#!"></a></li>
-          </ul>
+        <div class="footer-copyright">
+            <div class="container">
+                Templates by <a class="orange-text text-lighten-3" href="http://materializecss.com" target="_blank">Materialize</a>
+            </div>
         </div>
-        <div class="col l3 s12">
-          <h5 class="white-text"></h5>
-          <ul>
-		<div id="pb-opennlp" class= "container l12 center">
-			<a href="https://opennlp.apache.org/" target="_blank"><img src="images/pb-opennlp.jpg" alt=""  class="circle responsive-img l12" height="300" width="300"></a>
-		</div>
-		<li><a class="white-text" href="#!"></a></li>
-            <li><a class="white-text" href="#!"></a></li>
-            <li><a class="white-text" href="#!"></a></li>
-            <li><a class="white-text" href="#!"></a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="footer-copyright">
-      <div class="container">
-      Templates by <a class="orange-text text-lighten-3" href="http://materializecss.com" target="_blank">Materialize</a>
-      </div>
-    </div>
-  </footer>
+    </footer>
 
 
   <!--  Scripts-->
@@ -183,7 +179,7 @@ eTextValue=document.getElementById("eText").value;
 		return false;
 		
 	$('#sentForm .progress').show();
-	$.post("http://translate-dhivehi.rhcloud.com/Translator/services/TranslatorS?findRule",
+	$.post("https://translate-dhivehi.rhcloud.com/Translator/services/TranslatorS?findRule",
 	{
 		eText: eTextValue
 	},

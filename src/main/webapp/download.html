@@ -1,167 +1,168 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-  <title>Manage Definitions</title>
-  
-	<style type="text/css">
-@charset "utf-8";
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="description" content="Translate from English to Dhivehi">
+    <meta name="keywords" content="Dhivehi Maldives Maldivian Translate Language Translator Translating">
+    <meta name="author" content="Hammadh Abdul Rahman">
+		<link rel="icon" href="images/favicon-32x32.png" sizes="32x32">
+    <title>Download Dictionary</title>
 
-@font-face 		{ font-family: 'MV_Faseyha'; src:url('fonts/mv_faseyha.otf') format('opentype') }
-/* @font-face 		{ font-family: 'MV_Waheed'; src:url('fonts/mv_waheed.otf') format('opentype') } */
-	  html {
-    font-family: GillSans, Calibri;
-  }
-.dText {
-    font-family: MV_Faseyha;
-    font-size: 200%;
-/*	text-align: right;*/
-	direction: rtl;
-}
-    </style>
-	
-  <!-- CSS  -->
-  <link href="css/icon.css" rel="stylesheet">
-  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <link rel="stylesheet" href="css/jquery-ui.css">
-	<style type="text/css">
- 
-  .draggable { width: 100px; height: 100px; padding: 0.5em; float: left; margin: 10px 10px 10px 0; }
-  .droppable { width: 150px; height: 150px; padding: 0.5em; float: left; margin: 10px; }
-	</style>
+    <!-- CSS  -->
+    <link href="css/compressed.css" rel="stylesheet">
 </head>
+
 <body>
-  <nav class="light-blue lighten-1" role="navigation">
-    <div class="nav-wrapper container">
-	  <a id="logo-container" href="index.html" class="brand-logo">English-Dhivehi Translator</a>
-      <ul class="right hide-on-med-and-down">
-		<li><a href="index.html"><i class="material-icons">home</i></a></li>
-		<li><a href="manage.html"><i class="material-icons">edit</i></a></li>
-		<li class="active"><a href="download.html"><i class="material-icons">get_app</i></a></li>
-     </ul>
+    <nav class="light-blue lighten-1" role="navigation">
+        <div class="nav-wrapper container">
+            <a id="logo-container" href="index.html" class="brand-logo">
+                <span class="hide-on-small-only">English-Dhivehi Translator</span>
+                <span class="hide-on-med-and-up">Translator</span>
+            </a>
+            <ul class="right hide-on-med-and-down">
+                <li><a href="index.html"><i class="material-icons">home</i></a></li>
+                <li><a href="manage.html"><i class="material-icons">library_add</i></a></li>
+                <li class="active"><a href="download.html"><i class="material-icons">get_app</i></a></li>
+                <li><a href="help.html"><i class="material-icons">live_help</i></a></li>
+            </ul>
 
-      <ul id="nav-mobile" class="side-nav">
-		<li><a href="index.html"><i class="material-icons left">home</i>Home</a></li>
-		<li><a href="manage.html"><i class="material-icons left">edit</i>Manage</a></li>
-		<li class="active"><a href="download.html"><i class="material-icons left">get_app</i>Download</a></li>
-      </ul>
-	  <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
-	</div>
-  </nav>
+            <ul id="nav-mobile" class="side-nav">
+                <li><a href="index.html"><i class="material-icons left">home</i>Home</a></li>
+                <li><a href="manage.html"><i class="material-icons left">library_add</i>Manage</a></li>
+                <li class="active"><a href="download.html"><i class="material-icons left">get_app</i>Download</a></li>
+                <li><a href="help.html"><i class="material-icons left">live_help</i>Help</a></li>
+            </ul>
+            <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+        </div>
+    </nav>
 
 
-  <div class="section no-pad-bot" id="Arrange-banner">
-    <div class="container">
-      <br><br>
-      <h1 class="header center orange-text">Download Dictionary</h1>
-      <div class="row center">
-        <h5 class="header col s12 light">Our dictionary has english word, dhivehi word and word type. Here is how to <a href='http://stackoverflow.com/questions/6002256/is-it-possible-to-force-excel-recognize-utf-8-csv-files-automatically' target="_blank">import</a> to Excel. Click <a href='#' onclick='downloadTypes()'>here</a> to download word type list.</h5>
-      </div>
-      <div class="row center">
-      </div>
+    <div class="section no-pad-bot" id="Arrange-banner">
+        <div class="container">
+            <br><br>
+            <h1 class="header center orange-text">Download Dictionary</h1>
+            <div class="row center">
+                <h5 class="header col s12 light">Our dictionary has english word, dhivehi word and word type. <a href='http://stackoverflow.com/questions/6002256/is-it-possible-to-force-excel-recognize-utf-8-csv-files-automatically' target="_blank">Here</a> is how to import to Excel. Click <a href='#' onclick='downloadTypes()'>here</a> to download word type list.</h5>
+            </div>
+            <div class="row center">
+            </div>
 
+        </div>
     </div>
-  </div>
-  
-	<div id='download-div' class="row center">
-      <br>
-		<a id="download-button" class="btn-large waves-effect waves-light">Download Dictionary</a>
-      <br><br>	
-	</div>
 
-  <footer class="page-footer orange">
-    <div class="container">
-      <div class="row">
-        <div class="col l6 s12">
-          <h5 class="white-text">About</h5>
-          <p class="grey-text text-lighten-4">We are a team of college students working on this project like it's our full time job. This project is too huge to accomplish on our own and we need your help to make this a success. Any help is greatly appreciated.</p>
+    <div id='download-div' class="row center">
+        <br>
+				<button id='download-button' class="btn-large waves-effect waves-light" type="submit" name="action">Download Dictionary
+						<i class="material-icons right">get_app</i>
+				</button>
+        <br><br>
+    </div>
 
-
-        </div>
-        <div class="col l3 s12">
-          <h5 class="white-text">Developers</h5>
-          <ul>
-            <li><a class="white-text" href="mailto:freestyle.reunion@gmail.com" target="_blank">Hammadh</a></li>
-            <li><a class="white-text" href="#!">Ashraq</a></li>
-            <li><a class="white-text" href="#!"></a></li>
-            <li><a class="white-text" href="#!"></a></li>
-          </ul>
-        </div>
-        <div class="col l3 s12">
-          <h5 class="white-text"></h5>
-          <ul>
-		<div id="pb-opennlp" class= "container l12 center">
-			<a href="https://opennlp.apache.org/" target="_blank"><img src="images/pb-opennlp.jpg" alt=""  class="circle responsive-img l12" height="300" width="300"></a>
+		<div class="progress" style="display:none">
+				<div class="indeterminate"></div>
 		</div>
-		<li><a class="white-text" href="#!"></a></li>
-            <li><a class="white-text" href="#!"></a></li>
-            <li><a class="white-text" href="#!"></a></li>
-            <li><a class="white-text" href="#!"></a></li>
-          </ul>
+
+		<div id="feedback" class="#ef9a9a red lighten-3" style="display:none">
+				<br>
+				<br>
+				<br>
+				<br>
+		</div>
+
+    <footer class="page-footer orange">
+        <div class="container">
+            <div class="row">
+                <div class="col l6 s12">
+                    <h5 class="white-text">About</h5>
+                    <p class="grey-text text-lighten-4">We are a team of college students working on this project like it's our full time job. This project is too huge to accomplish on our own and we need your help to make this a success. Any help is greatly appreciated.</p>
+
+
+                </div>
+                <div class="col l3 s12">
+                    <h5 class="white-text">Developers</h5>
+                    <ul>
+                        <li><a class="white-text" href="mailto:admin@translate.33mail.com" target="_blank">Hammadh</a></li>
+                        <li><a class="white-text">Ashraq</a></li>
+                    </ul>
+                </div>
+                <div class="col l3 s12">
+                    <h5 class="white-text"></h5>
+                    <ul>
+                        <div id="pb-opennlp" class="container l12 center">
+                            <a href="https://opennlp.apache.org/" target="_blank"><img src="images/pb-opennlp.jpg" alt="Apache OpenNLP Logo" class="circle responsive-img l12" height="300" width="300"></a>
+                        </div>
+                    </ul>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-    <div class="footer-copyright">
-      <div class="container">
-      Template by <a class="orange-text text-lighten-3" href="http://materializecss.com" target="_blank">Materialize</a>
-      </div>
-    </div>
-  </footer>
+        <div class="footer-copyright">
+            <div class="container">
+                Templates by <a class="orange-text text-lighten-3" href="http://materializecss.com" target="_blank">Materialize</a>
+            </div>
+        </div>
+    </footer>
 
 
-  <!--  Scripts-->
-  <script type="text/javascript" src="js/jquery.js"></script>
-  <script type="text/javascript">
-	var jQuery_1_4_2 = $;
-  </script>
-  <script src="js/jquery-2.1.1.min.js"></script>
-  <script src="js/jquery-ui.js"></script>
-  <script src="../../bin/materialize.js"></script>
-  <script src="js/init.js"></script>
-  <script src="js/angular.min.js"></script>
-  <script src="js/jquery.ui.touch-punch.min.js"></script>
-  <script type="text/javascript" src="js/jquery.caret.1.02.js"></script>
-<script>
-	$(document).ready(function(){
-		$("#download-button").click(function(){
-			$.post("https://translate-dhivehi.rhcloud.com/Translator/services/TranslatorS?wsdl/getDictionaryO",
-			{
-				eText: "blank"
-			},
-			function(data){
-				var csvContent = "data:text/csv;charset=utf-8,";
-				var d = data.childNodes[0].childNodes;
-				for(var a=0; a<d.length; a++){
-					csvContent += ''.concat(d[a].childNodes[0].childNodes[0].data, ', ', d[a].childNodes[1].childNodes[0].data, ', ', d[a].childNodes[2].childNodes[0].data, '\n');
+    <!--  Scripts-->
+    <script type="text/javascript" src="js/jquery-1.4.2.js"></script>
+    <script type="text/javascript" src="js/compressed.js" defer></script>
+    <script>
+        $(document).ready(function() {
+            $("#download-button").click(function() {
+								$('.progress').show();
+                $.post("https://translate-dhivehi.rhcloud.com/Translator/services/TranslatorS?wsdl/getDictionaryO", {
+                        eText: "blank"
+                    },
+                    function(data) {
+												$('.progress').hide();
+												$("#feedback").hide();
+                        var csvContent = "data:text/csv;charset=utf-8,";
+                        var d = data.childNodes[0].childNodes;
+                        for (var a = 0; a < d.length; a++) {
+                            csvContent += ''.concat(nh(d[a].childNodes[0].childNodes[0]), ', ', nh(d[a].childNodes[1].childNodes[0]), ', ', nh(d[a].childNodes[2].childNodes[0]), '\n');
+                        }
+
+                        var encodedUri = encodeURI(csvContent);
+
+                        var link = document.createElement("a");
+                        link.setAttribute("href", encodedUri);
+                        link.setAttribute("download", "dictionary.csv");
+
+                        link.click();
+										}).fail(function(xhr) {
+												feedback.innerHTML = "Error: Connection issue or server internal error @translate";
+												$("#feedback").show();
+												$('.progress').hide();
+										});
+
+                event.preventDefault();
+            });
+        });
+
+				// null handler
+				function nh(input){
+					var output="";
+					if(input!=null)
+						output=input.data;
+					return output;
 				}
-				
-				var encodedUri = encodeURI(csvContent);
-				
-				var link = document.createElement("a");
-				link.setAttribute("href", encodedUri);
-				link.setAttribute("download", "dictionary.csv");
 
-				link.click(); // This will download the data file named "my_data.csv".
-			});
+        function downloadTypes() {
+            var csvContent = "data:text/csv;charset=utf-8,";
+            //csvContent += '"1", "h,r"\n"2", "t,r"\n';
+            csvContent += '"1","Coordinating conjunction"\n"2","Cardinal number"\n"3","Determiner"\n"4","Existential there"\n"5","Foreign word"\n"6","Preposition or subordinating conjunction"\n"7","Adjective"\n"8","Adjective,comparative"\n"9","Adjective,superlative"\n"10","List item marker"\n"11","Modal"\n"12","Noun,singular or mass"\n"13","Noun,plural"\n"14","Proper noun,singular"\n"15","Proper noun,plural"\n"16","Predeterminer"\n"17","Possessive ending"\n"18","Personal pronoun"\n"19","Possessive pronoun"\n"20","Adverb"\n"21","Adverb,comparative"\n"22","Adverb,superlative"\n"23","Particle"\n"24","Symbol"\n"25","to"\n"26","Interjection"\n"27","Verb,base form"\n"28","Verb,past tense"\n"29","Verb,gerund or present participle"\n"30","Verb,past participle"\n"31","Verb,non­3rd person singular present"\n"32","Verb,3rd person singular present"\n"33","Wh­determiner"\n"34","Wh­pronoun"\n"35","Possessive wh­pronoun"\n"36","Wh­adverb"\n';
 
-			event.preventDefault();
-		});
-	});
-	
-	function downloadTypes(){
-		var csvContent = "data:text/csv;charset=utf-8,";
-			//csvContent += '"1", "h,r"\n"2", "t,r"\n';
-			csvContent += '"1","Coordinating conjunction"\n"2","Cardinal number"\n"3","Determiner"\n"4","Existential there"\n"5","Foreign word"\n"6","Preposition or subordinating conjunction"\n"7","Adjective"\n"8","Adjective,comparative"\n"9","Adjective,superlative"\n"10","List item marker"\n"11","Modal"\n"12","Noun,singular or mass"\n"13","Noun,plural"\n"14","Proper noun,singular"\n"15","Proper noun,plural"\n"16","Predeterminer"\n"17","Possessive ending"\n"18","Personal pronoun"\n"19","Possessive pronoun"\n"20","Adverb"\n"21","Adverb,comparative"\n"22","Adverb,superlative"\n"23","Particle"\n"24","Symbol"\n"25","to"\n"26","Interjection"\n"27","Verb,base form"\n"28","Verb,past tense"\n"29","Verb,gerund or present participle"\n"30","Verb,past participle"\n"31","Verb,non­3rd person singular present"\n"32","Verb,3rd person singular present"\n"33","Wh­determiner"\n"34","Wh­pronoun"\n"35","Possessive wh­pronoun"\n"36","Wh­adverb"\n';
-		
-		var encodedUri = encodeURI(csvContent);
-		var link = document.createElement("a");
-		link.setAttribute("href", encodedUri);
-		link.setAttribute("download", "wordTypes.csv");
+            var encodedUri = encodeURI(csvContent);
+            var link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", "wordTypes.csv");
 
-		link.click(); // This will download the data file named "my_data.csv".
-	}
-</script>
-  </body>
+            link.click();
+        }
+    </script>
+</body>
+
 </html>

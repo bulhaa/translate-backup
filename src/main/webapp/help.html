@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="manager">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="description" content="Translate from English to Dhivehi">
+    <meta name="keywords" content="Dhivehi Maldives Maldivian Translate Language Translator Translating">
+    <meta name="author" content="Hammadh Abdul Rahman">
+		<link rel="icon" href="images/favicon-32x32.png" sizes="32x32">
+    <title>Manage Definitions</title>
+
+    <!-- CSS  -->
+    <link href="css/compressed.css" rel="stylesheet">
+</head>
+
+<body>
+    <nav class="light-blue lighten-1" role="navigation">
+        <div class="nav-wrapper container">
+            <a id="logo-container" href="index.html" class="brand-logo">
+							<span class="hide-on-small-only" >English-Dhivehi Translator</span>
+							<span class="hide-on-med-and-up" >Translator</span>
+						</a>
+            <ul class="right hide-on-med-and-down">
+                <li><a href="index.html"><i class="material-icons">home</i></a></li>
+                <li><a href="manage.html"><i class="material-icons">library_add</i></a></li>
+                <li><a href="download.html"><i class="material-icons">get_app</i></a></li>
+                <li class="active"><a href="help.html"><i class="material-icons">live_help</i></a></li>
+            </ul>
+
+            <ul id="nav-mobile" class="side-nav">
+                <li><a href="index.html"><i class="material-icons left">home</i>Home</a></li>
+                <li><a href="manage.html"><i class="material-icons left">library_add</i>Manage</a></li>
+                <li><a href="download.html"><i class="material-icons left">get_app</i>Download</a></li>
+                <li class="active"><a href="help.html"><i class="material-icons left">live_help</i>Help</a></li>
+            </ul>
+            <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+        </div>
+    </nav>
+    <div class="section no-pad-bot" id="index-banner">
+        <div class="container">
+            <h1 class="header center orange-text">The main screen</h1>
+            <div class="row">
+                In the main screen users can enter English text and translate it to Dhivehi.
+If the translation is successful the Dhivehi translation is displayed. If a matching rule is not found a word-by-word translation is displayed. And if the definition is missing then the English word itself it displayed.
+</br>
+</br>
+In all pages you can find the navigation menu and the footer. From the navigation menu you can navigate to the Main Page, Add Definition and Rule page and Download Dictionary page.
+In the footer some information about the project and the developers is present. A link is present to contact the team by email. The footer also contains credits for Apache OpenNLP and Materialise.
+            </div></br>
+						
+            <h1 class="header center orange-text">Where to go to add/edit/remove a record?</h1>
+            <div class="row">
+Users can add Definitions and Rules in the Add Definition and Rule page. The icon with the plus sign will take you to this page. You can enter a sentences and click Lookup. It will show the current definitions if present. The Dhivehi text is highlighted in green if this is the case. Otherwise the Dhivehi text is highlighted in red. Even if the definition is unavailable the word type will be found using Apache OpenNLP. You will need to fill the missing Dhivehi text and click Add. This will show a feedback informing whether the definition was added successfully.
+To add a rule you can find the form below. You can rearrange or even remove words to form the rule. Click Add rule when you are done. A feedback will be displayed below informing whether the rule was added successfully. 
+</br>
+</br>
+When adding definitions if a definition with the same English text and word type exists then, the new definition will not overwrite the existing definition. The new definition will be stored as reference but will not be used in translation. The definition correction will be reviewed by the moderator. 
+For rules also if a clashing rule with higher precedence already exists the new rule will be added but it will be ignored. Please email us via the link in the Developers section if a rule needs to be changed.
+            </div></br>
+						
+            <h1 class="header center orange-text">How to download dictionary?</h1>
+            <div class="row">
+You can click the Download icon in the navigation menu to go to download page. This page has an icon with a down arrow. In this page you can click to download dictionary. The page also has a link which will guide you on how to import the downloaded CSV file into Microsoft Excel. You can also download the list of word types.  The word type list contains the word type names and the corresponding ID which we have used in the dictionary. The word type IDs 1-36 is same as in Apache OpenNLP. Any value above that is used to define unique behaviors when translating. 
+            </div></br>
+						
+            <h1 class="header center orange-text">How to navigate through the system?</h1>
+            <div class="row">
+In all pages you can find the navigation menu. From the navigation menu you can navigate to the Main Page, Add Definition/Rule page and Download Dictionary page.
+            </div></br>
+						
+            <h1 class="header center orange-text">How to get more help?</h1>
+            <div class="row">
+Email to admin@translate.33mail.com
+            </div></br>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <footer class="page-footer orange">
+        <div class="container">
+            <div class="row">
+                <div class="col l6 s12">
+                    <h5 class="white-text">About</h5>
+                    <p class="grey-text text-lighten-4">We are a team of college students working on this project like it's our full time job. This project is too huge to accomplish on our own and we need your help to make this a success. Any help is greatly appreciated.</p>
+
+
+                </div>
+                <div class="col l3 s12">
+                    <h5 class="white-text">Developers</h5>
+                    <ul>
+                        <li><a class="white-text" href="mailto:admin@translate.33mail.com" target="_blank">Hammadh</a></li>
+                        <li><a class="white-text">Ashraq</a></li>
+                    </ul>
+                </div>
+                <div class="col l3 s12">
+                    <h5 class="white-text"></h5>
+                    <ul>
+                        <div id="pb-opennlp" class="container l12 center">
+                            <a href="https://opennlp.apache.org/" target="_blank"><img src="images/pb-opennlp.jpg" alt="Apache OpenNLP Logo" class="circle responsive-img l12" height="300" width="300"></a>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <div class="container">
+                Templates by <a class="orange-text text-lighten-3" href="http://materializecss.com" target="_blank">Materialize</a>
+            </div>
+        </div>
+    </footer>
+
+
+    <!--  Scripts-->
+  <script type="text/javascript" src="js/jquery.js"></script>
+  <script type="text/javascript">
+	var jQuery_1_4_2 = $;
+  </script>
+  <script src="js/jquery-2.1.1.min.js"></script>
+  <script src="js/jquery-ui.js"></script>
+  <script src="../../bin/materialize.js"></script>
+  <script src="js/init.js"></script>
+  <!-- <script type="text/javascript" src="js/jtk-4.2.1.pack.js"></script -->>
+  <script src="js/angular.min.js"></script>
+  <script src="js/jquery.ui.touch-punch.min.js"></script>
+  <script type="text/javascript" src="js/jquery.caret.1.02.js"></script>
+	<script src="manager.js"></script>
+    <script defer>
+        $(document).ready(function() {
+            $('select').material_select();
+            $('#sent_eText').focus();
+						var QueryString = getQueryString();
+						if(QueryString.eText != null)
+							$('#sent_eText').val(QueryString.eText.replace(/\+/g,' '));
+						/*else
+							$('#sent_eText').val('');*/
+            $('#sent_eTextL').addClass("active");
+        });
+
+				function getQueryString() {
+					// This function is anonymous, is executed immediately and 
+					// the return value is assigned to QueryString!
+					var query_string = {};
+					var query = window.location.search.substring(1);
+					var vars = query.split("&");
+					for (var i=0;i<vars.length;i++) {
+						var pair = vars[i].split("=");
+								// If first entry with this name
+						if (typeof query_string[pair[0]] === "undefined") {
+							query_string[pair[0]] = decodeURIComponent(pair[1]);
+								// If second entry with this name
+						} else if (typeof query_string[pair[0]] === "string") {
+							var arr = [ query_string[pair[0]],decodeURIComponent(pair[1]) ];
+							query_string[pair[0]] = arr;
+								// If third or later entry with this name
+						} else {
+							query_string[pair[0]].push(decodeURIComponent(pair[1]));
+						}
+					} 
+					return query_string;
+				};
+    </script>
+</body>
+
+</html>

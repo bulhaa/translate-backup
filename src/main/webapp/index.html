@@ -8,9 +8,8 @@
     <meta name="description" content="Translate from English to Dhivehi">
     <meta name="keywords" content="Dhivehi Maldives Maldivian Translate Language Translator Translating">
     <meta name="author" content="Hammadh Abdul Rahman">
+		<link rel="icon" href="images/favicon-32x32.png" sizes="32x32">
     <title>English-Dhivehi Translator</title>
-
-
 
     <!-- CSS  -->
     <link href="css/compressed.css" rel="stylesheet">
@@ -29,14 +28,16 @@
 						</a>
             <ul class="right hide-on-med-and-down">
                 <li class="active"><a href="index.html"><i class="material-icons">home</i></a></li>
-                <li><a href="manage.html"><i class="material-icons">edit</i></a></li>
+                <li><a href="manage.html"><i class="material-icons">library_add</i></a></li>
                 <li><a href="download.html"><i class="material-icons">get_app</i></a></li>
+                <li><a href="help.html"><i class="material-icons">live_help</i></a></li>
             </ul>
 
             <ul id="nav-mobile" class="side-nav">
                 <li class="active"><a href="index.html"><i class="material-icons left">home</i>Home</a></li>
-                <li><a href="manage.html"><i class="material-icons left">edit</i>Manage</a></li>
+                <li><a href="manage.html"><i class="material-icons left">library_add</i>Manage</a></li>
                 <li><a href="download.html"><i class="material-icons left">get_app</i>Download</a></li>
+                <li><a href="help.html"><i class="material-icons left">live_help</i>Help</a></li>
             </ul>
             <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
         </div>
@@ -59,8 +60,7 @@
             </div>
         </form>
         <br>
-        <div id="dText" class="#ef9a9a red lighten-3 dText" style="display:none">
-            <br>
+        <div id="dText" class="#ef9a9a red lighten-3 dText" style='display:none'>
             <br>
             <br>
             <br>
@@ -69,7 +69,9 @@
         <div id='improve-div' class="row center" style='display:none'>
             <br><br>Showing word to word translation<br><br> Try translate 'Welcome to the new generation of club' or click improve translation
             <br><br>
-            <a href="manage.html" id="improve-button" class="btn-large waves-effect waves-light orange">Improve Translation</a>
+						<button id='improve-button' class="btn-large waves-effect waves-light orange" type="submit" name="action">Improve Translation
+								<i class="material-icons right">library_add</i>
+						</button>
         </div>
     </div>
 
@@ -108,7 +110,8 @@
 
 
     <!--  Scripts-->
-    <script type="text/javascript" src="js/compressed.js"></script>
+    <script type="text/javascript" src="js/jquery-1.4.2.js"></script>
+    <script type="text/javascript" src="js/compressed.js" defer></script>
 
 		<!--
     <script type="text/javascript" src="js/jquery-1.4.2.js"></script>
@@ -124,7 +127,7 @@
     <script src="js/jquery.ui.touch-punch.min.js"></script>
     <script type="text/javascript" src="js/jquery.caret.1.02.js"></script>
 			-->
-    <script defer>
+    <script>
         $(document).ready(function() {
             $('#eText').focus();
             $('#eText').val(" ");
@@ -133,13 +136,17 @@
                 event.preventDefault();
                 translate();
             });
+
             $(".waves-input-wrapper").click(function(event) {
                 event.preventDefault();
                 translate();
             });
+
+            $("#improve-button").click(function(event) {
+                event.preventDefault();
+								location.href="manage.html?eText=" + $('#eText').val().replace(/ /g,'+');
+            });
         });
-
-
 
         function translate() {
             eTextValue = document.getElementById("eText").value;
@@ -165,12 +172,12 @@
                     $("#dText").show();
                     $('#sentForm .progress').hide();
                 }).fail(function(xhr) {
-                $("#dText").removeClass('dText');
-                dText.innerHTML = "Error: Connection issue or server internal error @translate";
-                $("#dText").show();
-                $('#sentForm .progress').hide();
-                $("#improve-div").hide();
-            });
+										$("#dText").removeClass('dText');
+										dText.innerHTML = "Error: Connection issue or server internal error @translate";
+										$("#dText").show();
+										$('#sentForm .progress').hide();
+										$("#improve-div").hide();
+								});
 
             return false;
         }
