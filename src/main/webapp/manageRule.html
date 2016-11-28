@@ -12,6 +12,9 @@
     <title>Manage Rule</title>
 
     <!-- CSS  -->
+		<style>
+			.dv{font-family:MV_Faseyha}
+		</style>
     <link href="css/compressed.css" rel="stylesheet">
     <link rel="stylesheet" href="jstree/dist/themes/default/style.min.css" />
 </head>
@@ -106,6 +109,57 @@
         </div>
     </div>
 
+
+    <div class="section no-pad-bot" id="index-banner">
+        <div class="container">
+            <br><br>
+            <h1 class="header center orange-text">Transformations</h1>
+            <div class="row center">
+                <h5 class="header col s12 light"></h5>
+            </div>
+            <div class="row center">
+            </div>
+            <!-- <br><br> -->
+        </div>
+    </div>
+
+    <div class="section no-pad-bot" id="index-banner2">
+        <!--<div class="container" style="height: 50vh">-->
+        <div class="container">
+            <div id="tree2">
+                <ul>
+                    <li>Root</li>
+                </ul>
+            </div><br>
+            <div id="treeFeedback2" class="#ef9a9a red lighten-3" style="display:none"></div>
+        </div>
+    </div>
+
+
+    <div class="section no-pad-bot" id="index-banner">
+        <!--<div class="container" style="height: 50vh">-->
+        <div class="container">
+            <form class="" id="ruleForm2" method="post" align="center" action="" style="display:none">
+                <div class="input-field">
+                    <input id="trans_Type" type="text" class="validate" required>
+                    <label id="trans_TypeL" for="trans_Type">Type</label>
+                </div>
+                <div class="input-field">
+                    <input id="trans_Rule" type="text" class="validate dText dv" required>
+                    <label id="trans_RuleL" for="trans_Rule">Rule</label>
+                </div>
+								<button id='download-button2' class="btn waves-effect waves-light" type="submit" name="action">Update Rule
+										<i class="material-icons right">send</i>
+								</button>
+                <div class="progress" style="display:none">
+                    <div class="indeterminate"></div>
+                </div>
+            </form>
+            <br>
+            <div id="ruleFeedback2" class="#ef9a9a red lighten-3" style="display:none"></div>
+        </div>
+    </div>
+
 <!-- <div id="tabs">
   <ul>
     <li><a href="#tabs-1">Nunc tincidunt</a></li>
@@ -159,22 +213,36 @@
 
 
     <!--  Scripts-->
-    <script type="text/javascript" src="js/jquery-1.4.2.js"></script>
-    <script type="text/javascript" src="js/compressed.js" ></script>
+  <script type="text/javascript" src="js/jquery.js"></script>
+  <script type="text/javascript">
+	var jQuery_1_4_2 = $;
+  </script>
+  <script src="js/jquery-2.1.1.min.js"></script>
+  <script src="js/jquery-ui.js"></script>
+  <script src="../../bin/materialize.js"></script>
+  <script src="js/init.js"></script>
+  <!-- <script type="text/javascript" src="js/jtk-4.2.1.pack.js"></script -->
+  <script src="js/angular.min.js"></script>
+  <script src="js/jquery.ui.touch-punch.min.js"></script>
+  <script type="text/javascript" src="js/jquery.caret.1.02.js"></script>
+	<script src="manager.js"></script>
     <script src="jstree/dist/jstree.min.js" defer></script>
     <script>
         var firebaseID;
 
         $(document).ready(function() {
 
+
             $("#ruleForm").submit(function(event) {
                 event.preventDefault();
                 updateRule();
             });
-            $(".waves-input-wrapper").click(function(event) {
+
+            $("#ruleForm2").submit(function(event) {
                 event.preventDefault();
-                updateRule();
+                updateRule2();
             });
+
 
             function updateRule() {
                 var rule = '';
@@ -193,7 +261,7 @@
                 if ($('#ruleForm .progress').is(':visible'))
                     return false;
 
-                $('#sentForm .progress').show();
+                $('#ruleForm .progress').show();
                 $.post("https://translate-dhivehi.rhcloud.com/Translator/services/TranslatorS?setRuleAdvanced", {
                         key: firebaseID,
                         rule: rule
@@ -211,14 +279,142 @@
                         $('#sentForm .progress').hide();*/
                         $("#ruleFeedback").html("Rule added");
                         $("#ruleFeedback").show();
+												$('#ruleForm .progress').hide();
                     }).fail(function(xhr) {
                     $("#ruleFeedback").html("Error: Connection issue or server internal error @SetRuleAdvanced");
                     $("#ruleFeedback").show();
+										$('#ruleForm .progress').hide();
 
                 });
 
                 return false;
             }
+
+            function updateRule2() {
+                if ($('#ruleForm2 .progress').is(':visible'))
+                    return false;
+
+                $('#ruleForm2 .progress').show();
+                $.post("https://translate-dhivehi.rhcloud.com/Translator/services/TranslatorS?setTransformation", {
+                        key: $('#trans_Type').val(),
+                        rule: $('#trans_Rule').val()
+                    },
+                    function(data) {
+                        $("#ruleFeedback2").html("Transformation added");
+                        $("#ruleFeedback2").show();
+												$('#ruleForm2 .progress').hide();
+                    }).fail(function(xhr) {
+                    $("#ruleFeedback2").html("Error: Connection issue or server internal error @SetTransformation");
+                    $("#ruleFeedback2").show();
+										$('#ruleForm2 .progress').hide();
+                });
+
+                return false;
+            }
+
+            $('.dText').bind('input', function() {
+			// $('.dText').on('input', function() {
+					//$(this).change();
+				  // $(this)[0].value = 'test';
+				  var c = $(this).caret().start;
+				  var s = $(this)[0].value;
+				  var o = s;
+				  
+				  s = s.replace('q', 'ް');
+				  s = s.replace('w', 'އ');
+				  s = s.replace('e', 'ެ');
+				  s = s.replace('r', 'ރ');
+				  s = s.replace('t', 'ތ');
+				  s = s.replace('y', 'ޔ');
+				  s = s.replace('u', 'ު');
+				  s = s.replace('i', 'ި');
+				  s = s.replace('o', 'ޮ');
+				  s = s.replace('p', 'ޕ');
+				  s = s.replace('a', 'ަ');
+				  s = s.replace('s', 'ސ');
+				  s = s.replace('d', 'ދ');
+				  s = s.replace('f', 'ފ');
+				  s = s.replace('g', 'ގ');
+				  s = s.replace('h', 'ހ');
+				  s = s.replace('j', 'ޖ');
+				  s = s.replace('k', 'ކ');
+				  s = s.replace('l', 'ލ');
+				  s = s.replace('z', 'ޒ');
+				  s = s.replace('x', '×');
+				  s = s.replace('c', 'ޗ');
+				  s = s.replace('v', 'ވ');
+				  s = s.replace('b', 'ބ');
+				  s = s.replace('n', 'ނ');
+				  s = s.replace('m', 'މ');
+				  s = s.replace('Q', 'ޤ');
+				  s = s.replace('W', 'ޢ');
+				  s = s.replace('E', 'ޭ');
+				  s = s.replace('R', 'ޜ');
+				  s = s.replace('T', 'ޓ');
+				  s = s.replace('Y', 'ޠ');
+				  s = s.replace('U', 'ޫ');
+				  s = s.replace('I', 'ީ');
+				  s = s.replace('O', 'ޯ');
+				  s = s.replace('P', '÷');
+				  s = s.replace('A', 'ާ');
+				  s = s.replace('S', 'ށ');
+				  s = s.replace('D', 'ޑ');
+				  s = s.replace('F', 'ﷲ');
+				  s = s.replace('G', 'ޣ');
+				  s = s.replace('H', 'ޙ');
+				  s = s.replace('J', 'ޛ');
+				  s = s.replace('K', 'ޚ');
+				  s = s.replace('L', 'ޅ');
+				  s = s.replace('Z', 'ޡ');
+				  s = s.replace('X', 'ޘ');
+				  s = s.replace('C', 'ޝ');
+				  s = s.replace('V', 'ޥ');
+				  s = s.replace('B', 'ޞ');
+				  s = s.replace('N', 'ޏ');
+				  s = s.replace('M', 'ޟ');
+  
+				  if(o!=s){
+					$(this)[0].value = s;
+					$(this).change();
+					var a=0;
+					if(!$(this).attr('lastText'))
+						$(this).attr('lastText', "");
+					
+					for(; a<$(this).attr('lastText').length && a<$(this).val().length; a++){
+						if($(this).attr('lastText').charAt(a).match($(this).val().charAt(a))==null)
+							break;
+					}
+					a++;
+					if(a==0)
+						a=c+1;
+					 // alert(''.concat(c, ' ',$(this).val().length, ' ', a, $(this).val().charAt(c-1)));
+					 // alert(''.concat(c, ' ',$(this).val().length, ' ', a, ' '));
+					
+					//if(c!=0 && $(this).val().length>2)
+					//if((c!=0 && !$(this).val().charAt(c-1).match("\\s")) || c+1 == $(this).val().length)
+					//if((c==0 || (!$(this).val().charAt(c-1).match("\\s")) || c+1 == $(this).val().length))
+					if($(this).attr('lastChar') != $(this).val().charAt($(this).val().length-1))
+					//if(!$(this).attr('lastChar').match($(this).val().charAt($(this).val().length-1)))
+						$(this).caret($(this).val().length, $(this).val().length);
+					else if(c==0)
+						$(this).caret(a,a);
+					else if($(this).val().charAt(c-1).match("\\s"))
+						$(this).caret(c+1,c+1);
+					else
+						$(this).caret(c,c);
+						//$(this).caret(caretPos,caretPos);
+				  }
+				  $(this).attr('lastChar', $(this).val().charAt($(this).val().length-1));
+				  $(this).attr('lastText', $(this).val());
+                //caretPos = $(this).caret().start;
+			});
+			//$('.dText').thaana();
+            $('.dText').keydown(function() {
+                caretPos = $(this).caret().start;
+            }).keyup(function() {
+                caretPos = $(this).caret().start;
+            });
+
 
             $("#tree").on('changed.jstree', function(e, data) {
                 var i, j, r = [];
@@ -288,7 +484,7 @@
                                 setText("#rule_Order", order.substring(0, order.length - 1));
                                 setText("#rule_Transformations", transformations.substring(0, transformations.length - 1));
 
-																var wordtypes = {'-1':'Paragraph', '-2':'Sentence', '-3':'Join group', '-4':'Noun group', '1':'Coordinating conjunction', '2':'Cardinal number'};
+																var wordtypes = {'-1':'Paragraph', '-2':'Sentence', '-3':'Join group', '-4':'Noun group', '1':'Coordinating conjunction', '2':'Cardinal number', '3':'Determiner', '4':'Existential there', '5':'Foreign word', '6':'Preposition or subordinating conjunction', '7':'Adjective', '8':'Adjective,comparative', '9':'Adjective,superlative', '10':'List item marker', '11':'Modal', '12':'Noun,singular or mass', '13':'Noun,plural', '14':'Proper noun,singular', '15':'Proper noun,plural', '16':'Predeterminer', '17':'Possessive ending', '18':'Personal pronoun', '19':'Possessive pronoun', '20':'Adverb', '21':'Adverb,comparative', '22':'Adverb,superlative', '23':'Particle', '24':'Symbol', '25':'to', '26':'Interjection', '27':'Verb,base form', '28':'Verb,past tense', '29':'Verb,gerund or present participle', '30':'Verb,past participle', '31':'Verb,nonÂ­3rd person singular present', '32':'Verb,3rd person singular present', '33':'WhÂ­determiner', '34':'WhÂ­pronoun', '35':'Possessive whÂ­pronoun', '36':'WhÂ­adverb'};
 
 																var patternArr = $('#rule_Pattern').val().split(',');
 																var patternOut="";
@@ -353,6 +549,77 @@
                 "plugins": ["contextmenu", "wholerow", "types", "dnd", "state"]
             });
             loadRule(-1, 1);
+
+
+            $("#tree2").on('changed.jstree', function(e, data) {
+                var i, j, r = [];
+                for (i = 0, j = data.selected.length; i < j; i++) {
+                    //r.push(data.instance.get_node(data.selected[i]).text);
+                    //$('#tree').jstree(true).create_node(data.instance.get_node(data.selected[i]).id, newNode);
+
+                    var node = data.instance.get_node(data.selected[i]);
+                    //if(node.data=="type" && node.text<0){
+
+                    if (node.data == "type") {
+                        $('#tree').jstree(true).open_node(node);
+                        var children = $('#tree').jstree(true).get_children_dom(node);
+
+                        for (var a = 0; a < children.length; a++) {
+                            $('#tree').jstree(true).delete_node(children[a]);
+                        }
+
+
+                        /*if($('#tree').jstree(true).get_children_dom (node).length>0){
+                        	var parent = node.parent;
+                        	$('#tree').jstree(true).delete_node (node.id);
+                        	
+                        	var newNode = { text: text, data: "type", state: "open", "icon" : "images/tree-icon.png" };
+                        	var node = $('#tree').jstree(true).create_node(parent, newNode);
+                        }else*/
+
+                        //if(node.text=="Root" && $('#tree').jstree(true).get_children_dom (1).length==0)
+                        if (node.text == "Root")
+                            loadTranformation(-1, 0);
+
+														
+
+                    } else {
+                        firebaseID = node.data;
+												setText("#trans_Type", node.text);
+												setText("#trans_Rule", node.data);
+
+
+												$('#tree2').jstree(true).open_node(node);
+
+												$("#ruleForm2").show();
+												$("#treeFeedback2").hide();
+                    }
+
+
+
+                    //else if(node.data="
+                }
+                $('#event_result').html('Selected: ' + r.join(', '));
+            }).jstree({
+                'core': {
+                    'check_callback': true,
+                    //'data': [{ 'id' : '1', 'text' : 'Root', 'state' : {'opened':true}, 'children' : ['sentence', 'child 2']}]
+                    'data': [{
+                        'id': '0',
+                        'text': 'Root',
+                        data: "type",
+                        'state': {
+                            'opened': true
+                        },
+                        "icon": "images/tree-icon.png"
+                    }]
+                },
+                "checkbox": {
+                    "keep_selected_style": true
+                },
+                "plugins": ["contextmenu", "wholerow", "types", "dnd", "state"]
+            });
+            loadTranformation(-1, 0);
 
             /*$(function () { $root = $('#jstree_demo_div').jstree(
                 'core' : {
@@ -421,6 +688,77 @@
                 }).fail(function() {
                 $("#treeFeedback").html("Error: Connection issue or server internal error @GetRule->LoadTree");
                 $("#treeFeedback").show();
+            });
+        }
+				
+        function loadTranformation(type, nodeID) {
+						$( "#tabs" ).tabs();
+
+            $.post("https://translate-dhivehi.rhcloud.com/Translator/services/TranslatorS?getTransformation", {
+                    eText: type
+                },
+                function(data) {
+                    var rules = data.childNodes[0].childNodes;
+										var nTransformations=0;
+										
+										var node = $('#tree2').jstree(true).get_node(nodeID);
+										
+										var children = $('#tree2').jstree(true).get_children_dom(node);
+
+										for (var a = 0; a < children.length; a++) {
+												$('#tree2').jstree(true).delete_node(children[a]);
+										}
+
+										for (var a = 0; a < rules.length / 2; a++) {
+											if(nTransformations < rules[a].childNodes[0].data.split(",")[0]*1)
+												nTransformations = rules[a].childNodes[0].data.split(",")[0]*1;
+                    }
+										
+                    for (var a = 0; a < nTransformations; a++) {
+											var newNode = {
+													id: a+1,
+													text: a+1,
+													li_attr:{ class : "dv" },
+													state: "open"
+											};
+											if(!$('#tree2').jstree(true).get_node(a+1)){
+												var rule = $('#tree2').jstree(true).create_node(nodeID, newNode);
+											}
+                    }
+										
+										
+										
+                    for (var a = 0; a < rules.length / 2; a++) {
+                        //var newNode = { id: rules[a].childNodes[0].data, text: rules[rules.length/2+a].childNodes[0].data, data: "rule", state: "open" };
+												var rule = $('#tree2').jstree(true).get_node(rules[a].childNodes[0].data.split(",")[0]);
+												$('#tree2').jstree(true).set_text(rule, rules[a].childNodes[0].data.split(",")[0] + " " + rules[rules.length / 2 + a].childNodes[0].data);
+												
+                        var newNode = {
+                            text: rules[a].childNodes[0].data,
+                            data: rules[rules.length / 2 + a].childNodes[0].data,
+                            state: "open"
+                        };
+												
+                        rule = $('#tree2').jstree(true).create_node(rule, newNode);
+
+                        var types = rules[rules.length / 2 + a].childNodes[0].data;
+
+                            var newNode = {
+                                text: types,
+                                data: "type",
+                                state: "open",
+                                "icon": "images/tree-icon.png"
+                            };
+                            $('#tree2').jstree(true).create_node(rule, newNode);
+														
+                    }
+										
+
+                    $('#tree2').jstree(true).open_node(nodeID);
+                    $("#treeFeedback2").hide();
+                }).fail(function() {
+                $("#treeFeedback2").html("Error: Connection issue or server internal error @GetTransformation->LoadTree");
+                $("#treeFeedback2").show();
             });
         }
     </script>
