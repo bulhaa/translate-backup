@@ -111,7 +111,7 @@
     <script type="text/javascript" src="js/compressed.js" defer></script>
     <script>
         $(document).ready(function() {
-            $("#download-button").click(function() {
+            $("#download-button").click(function(event) {
 								$('.progress').show();
                 $.post("https://translate-dhivehi.rhcloud.com/Translator/services/TranslatorS?wsdl/getDictionaryO", {
                         eText: "blank"
